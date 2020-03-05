@@ -1,0 +1,18 @@
+Package: starsExtra
+Title: Miscellaneous functions for working with 'stars' rasters
+Version: 0.0.1
+Authors@R: 
+    person(given = "Michael",
+           family = "Dorman",
+           role = c("aut", "cre"),
+           email = "dorman@post.bgu.ac.il")
+Description: Miscellaneous functions for working with 'stars' objects, mainly single-band rasters. Currently includes functions for: (1) extracting raster values as vector or as matrix, (2) applying focal filter.
+Depends:
+    R (>= 3.5.0),
+    stars
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2
+Suggests: 
+    testthat (>= 2.1.0)
