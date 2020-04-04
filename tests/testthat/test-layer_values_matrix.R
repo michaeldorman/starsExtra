@@ -1,7 +1,7 @@
-test_that("layer_values_matrix small", {
+test_that("layer_to_matrix small", {
   expect_equal({
     data(dem)
-    dem1 = layer_values_matrix(dem)
+    dem1 = layer_to_matrix(dem)
   },
   structure(
     c(

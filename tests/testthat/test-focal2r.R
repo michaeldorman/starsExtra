@@ -1,20 +1,7 @@
-test_that("focal small mean 3, R vs C", {
-  expect_equal({
-    data(carmel)
-    carmel1 = focal2(carmel, matrix(1, 3, 3), "mean", na.rm = TRUE)
-    carmel1[[1]]
-  },
-  {
-    data(carmel)
-    carmel1 = focal2r(carmel, 3, mean, na.rm = TRUE)
-    carmel1[[1]]
-  })
-})
-
 test_that("focal small mean 3", {
   expect_equal({
     data(dem)
-    dem1 = focal2(dem, matrix(1, 3, 3), "mean", na.rm = TRUE)
+    dem1 = focal2r(dem, 3, mean, na.rm = TRUE)
     dem1[[1]]
   },
   structure(
@@ -28,7 +15,7 @@ test_that("focal small mean 3", {
 test_that("focal small max 5", {
   expect_equal({
     data(dem)
-    dem1 = focal2(dem, matrix(1, 5, 5), "max", na.rm = FALSE)
+    dem1 = focal2r(dem, 5, max, na.rm = FALSE)
     dem1[[1]]
   },
     structure(
@@ -42,10 +29,10 @@ test_that("focal small max 5", {
 test_that("focal small min 3", {
   expect_equal({
     data(dem)
-    dem1 = focal2(dem, matrix(1, 3, 3), "min", na.rm = TRUE)
+    dem1 = focal2r(dem, 3, min, na.rm = TRUE)
     dem1[[1]]
-  },    
-  structure(
+  },
+    structure(
       c(
         140,115,64,44,31,16,6,4,2,0,-2,-2,-2,140,115,64,44,31,16,6,4,2,0,-2,-2,-2,167,140,86,60,43,27,14,4,4,0,-2,-2,-2,185,166,108,86,62,41,20,5,5,3,3,3,4,199,183,141,115,91,64,34,15,7,2,1,1,1,206,203,167,139,112,93,64,39,8,2,1,1,1,198,197,197,162,140,117,91,69,27,2,1,1,1,183,183,183,184,167,141,112,87,63,6,1,1,1,166,166,166,168,174,161,139,113,88,11,1,1,1,152,152,152,153,155,175,158,135,109,69,10,4,4,152,152,152,153,155,175,173,163,120,95,26,5,5
       ),

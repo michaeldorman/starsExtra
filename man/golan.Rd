@@ -4,10 +4,12 @@
 \name{golan}
 \alias{golan}
 \title{Digital Elevation Model of Mount Carmel}
-\format{A \code{stars} object with 1 attribute:
+\format{
+A \code{stars} object with 1 attribute:
 \describe{
   \item{elevation}{Elevation above sea level, in meters}
-}}
+}
+}
 \usage{
 golan
 }

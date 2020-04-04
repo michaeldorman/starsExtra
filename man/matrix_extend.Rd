@@ -4,12 +4,14 @@
 \alias{matrix_extend}
 \title{Extend matrix}
 \usage{
-matrix_extend(m, n = 1)
+matrix_extend(m, n = 1, fill = NA)
 }
 \arguments{
 \item{m}{A \code{matrix}}
 
 \item{n}{By how many rows/columns to extend the matrix on each side?}
+
+\item{fill}{Fill value (default is \code{NA})}
 }
 \value{
 An extended \code{matrix}

@@ -7,13 +7,12 @@
 #'
 #' @examples
 #' data(dem)
-#' v = layer_values_vector(dem)
+#' v = layer_to_vector(dem)
 #' v
 #'
 #' @export
 
-# Apply focal filter
-layer_values_vector = function(r) {
+layer_to_vector = function(r) {
 
   # Checks
   r = check_one_attribute(r)

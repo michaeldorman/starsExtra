@@ -4,10 +4,12 @@
 \name{dem}
 \alias{dem}
 \title{Small Digital Elevation Model}
-\format{A \code{stars} object with 1 attribute:
+\format{
+A \code{stars} object with 1 attribute:
 \describe{
   \item{elevation}{Elevation above sea level, in meters}
-}}
+}
+}
 \usage{
 dem
 }

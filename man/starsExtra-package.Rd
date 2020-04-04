@@ -4,9 +4,9 @@
 \name{starsExtra-package}
 \alias{starsExtra}
 \alias{starsExtra-package}
-\title{starsExtra: Miscellaneous functions for working with 'stars' rasters}
+\title{starsExtra: Miscellaneous functions for working with stars rasters}
 \description{
-Miscellaneous functions for working with 'stars' objects, mainly single-band rasters. Currently includes functions for: (1) extracting raster values as vector or as matrix, (2) applying focal filter.
+Miscellaneous functions for working with 'stars' objects, mainly single-band rasters. Currently includes functions for: (1) focal filtering, (2) detrending of Digital Elevation Models, and (3) calculating flow length.
 }
 \author{
 \strong{Maintainer}: Michael Dorman \email{dorman@post.bgu.ac.il}

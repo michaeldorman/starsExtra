@@ -1,4 +1,4 @@
-## code to prepare `golan` dataset goes here
+## code to prepare `golan` dataset
 
 library(stars)
 
@@ -45,4 +45,5 @@ aoi = st_as_sfc(aoi)
 r = r[aoi]
 r = st_normalize(r)
 golan = r
+
 usethis::use_data(golan)
