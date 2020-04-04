@@ -47,15 +47,7 @@ data(carmel)
 carmel1 = focal2(carmel, matrix(1, 15, 15), "mean")
 ```
 
-``` r
-data(carmel)
-start = Sys.time()
-carmel1 = focal2(carmel, matrix(1, 15, 15), "mean")
-end = Sys.time()
-d = end - start
-```
-
-The calculation takes: 0.1983845 secs.
+The calculation takes: 0.1986117 secs.
 
 The original DEM and the filtered DEM can be combined and plotted with
 the following expressions:
