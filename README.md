@@ -9,7 +9,7 @@ R package `starsExtra` provides several miscellaneous functions for
 working with `stars` objects, mainly single-band rasters. Currently
 includes functions for:
 
--   Focal filtering,
+-   Focal filtering
 -   Detrending of Digital Elevation Models
 -   Calculating flow length
 
@@ -39,7 +39,7 @@ library(starsExtra)
 Example
 -------
 
-The following code applied a 15*15 mean focal filter on a 533*627
+The following code applied a 15\*15 mean focal filter on a 533\*627
 `stars` Digital Elevation Model (DEM):
 
 ``` r
@@ -55,7 +55,7 @@ end = Sys.time()
 d = end - start
 ```
 
-The calculation takes: 0.2245615 secs.
+The calculation takes: 0.1983845 secs.
 
 The original DEM and the filtered DEM can be combined and plotted with
 the following expressions:

@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 R package `starsExtra` provides several miscellaneous functions for working with `stars` objects, mainly single-band rasters. Currently includes functions for: 
 
-* Focal filtering, 
+* Focal filtering
 * Detrending of Digital Elevation Models
 * Calculating flow length
 
@@ -44,7 +44,7 @@ library(starsExtra)
 
 ## Example
 
-The following code applied a 15*15 mean focal filter on a 533*627 `stars` Digital Elevation Model (DEM):
+The following code applied a 15\*15 mean focal filter on a 533\*627 `stars` Digital Elevation Model (DEM):
 
 ```{r}
 data(carmel)
