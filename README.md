@@ -47,10 +47,16 @@ The following code applied a 15\*15 mean focal filter on a 533\*627
 
 ``` r
 data(carmel)
-carmel_mean15 = focal2(carmel, matrix(1, 15, 15), "mean", na.rm = TRUE, mask = TRUE)
+carmel_mean15 = focal2(
+  x = carmel,             # Input 'stars' raster
+  w = matrix(1, 15, 15),  # Weights
+  fun = "mean",           # Aggregation function
+  na.rm = TRUE,           # 'NA' in neighborhood are removed
+  mask = TRUE             # Areas that were 'NA' in 'x' are masked from result
+)
 ```
 
-The calculation takes: 0.1760368 secs.
+The calculation takes: 0.1726084 secs.
 
 The original DEM and the filtered DEM can be combined and plotted with
 the following expressions:
