@@ -47,16 +47,16 @@ The following code applied a 15\*15 mean focal filter on a 533\*627
 
 ``` r
 data(carmel)
-carmel1 = focal2(carmel, matrix(1, 15, 15), "mean")
+carmel_mean15 = focal2(carmel, matrix(1, 15, 15), "mean")
 ```
 
-The calculation takes: 0.1762683 secs.
+The calculation takes: 0.1842759 secs.
 
 The original DEM and the filtered DEM can be combined and plotted with
 the following expressions:
 
 ``` r
-r = c(carmel, round(carmel1, 1), along = 3)
+r = c(carmel, round(carmel_mean15, 1), along = 3)
 r = st_set_dimensions(r, 3, values = c("input", "15*15 mean filter"))
 plot(r, breaks = "equal", col = terrain.colors(10), key.pos = 4)
 ```
