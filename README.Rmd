@@ -50,13 +50,13 @@ The following code applied a 15\*15 mean focal filter on a 533\*627 `stars` Digi
 
 ```{r}
 data(carmel)
-carmel_mean15 = focal2(carmel, matrix(1, 15, 15), "mean")
+carmel_mean15 = focal2(carmel, matrix(1, 15, 15), "mean", na.rm = TRUE, mask = TRUE)
 ```
 
 ```{r, include=FALSE}
 data(carmel)
 start = Sys.time()
-carmel_mean15 = focal2(carmel, matrix(1, 15, 15), "mean")
+carmel_mean15 = focal2(carmel, matrix(1, 15, 15), "mean", na.rm = TRUE, mask = TRUE)
 end = Sys.time()
 d = end - start
 ```
