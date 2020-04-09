@@ -56,13 +56,13 @@ carmel_mean15 = focal2(
 )
 ```
 
-The calculation takes: 0.1726084 secs.
+The calculation takes: 0.173702 secs.
 
 The original DEM and the filtered DEM can be combined and plotted with
 the following expressions:
 
 ``` r
-r = c(carmel, round(carmel_mean15, 1), along = 3)
+r = c(carmel, carmel_mean15, along = 3)
 r = st_set_dimensions(r, 3, values = c("input", "15*15 mean filter"))
 plot(r, breaks = "equal", col = terrain.colors(10), key.pos = 4)
 ```
