@@ -1,4 +1,5 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version-ago/starsExtra)](https://cran.r-project.org/package=starsExtra)
 [![CRAN\_Downloads\_Badge](http://cranlogs.r-pkg.org/badges/last-month/starsExtra)](https://cran.r-project.org/package=starsExtra)
 
@@ -12,6 +13,8 @@ includes functions for:
 -   Focal filtering
 -   Detrending of Digital Elevation Models
 -   Calculating flow length
+-   Calculating the Convergence Index
+-   Calculating topographic aspect
 
 Installation
 ------------
@@ -31,7 +34,7 @@ Once installed, the library can be loaded as follows.
 ``` r
 library(starsExtra)
 #> Loading required package: sf
-#> Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 5.2.0
+#> Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 7.0.0
 #> Loading required package: stars
 #> Loading required package: abind
 ```
@@ -47,7 +50,7 @@ data(carmel)
 carmel1 = focal2(carmel, matrix(1, 15, 15), "mean")
 ```
 
-The calculation takes: 0.1986117 secs.
+The calculation takes: 0.1762683 secs.
 
 The original DEM and the filtered DEM can be combined and plotted with
 the following expressions:
