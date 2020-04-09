@@ -1,5 +1,5 @@
 ## Test environments
-* local Ubuntu 18.04 install, R 3.6.2
+* local Ubuntu 18.04 install, R 3.6.3
 * win-builder (devel and release)
 * R-hub builder
 

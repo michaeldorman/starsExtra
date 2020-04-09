@@ -23,9 +23,9 @@ focal2(
 
 \item{weight_fun}{A function which is applied for each pair of cell value and weight value. Possible values are: \code{"+"}, \code{"-"}, \code{"*"}, \code{"/"}. The default is \code{"*"}, i.e., each cell value is \emph{multiplied} by the respective weight.}
 
-\item{na.rm}{Should \code{NA} values be removed before applying function? Dafault is \code{TRUE}}
+\item{na.rm}{Should \code{NA} values be removed before applying function? Default is \code{TRUE}.}
 
-\item{mask}{If \code{TRUE}, pixels with \code{NA} in the input are set to \code{NA} in the output as well, i.e., the output is "masked" with the input (default \code{FALSE})}
+\item{mask}{If \code{TRUE}, pixels with \code{NA} in the input are set to \code{NA} in the output as well, i.e., the output is "masked" with the input (default is \code{FALSE}).}
 
 \item{na_flag}{Value use to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the raster (default is \code{-9999}).}
 }
@@ -33,26 +33,26 @@ focal2(
 The filtered \code{stars} raster
 }
 \description{
-Applies a focal filter with neighborhood size \code{k}*\code{k} on a raster (class \code{stars}), using C code.
+Applies a focal filter with neighborhood size \code{k}*\code{k} on a raster (class \code{stars}).
 }
 \note{
-The raster is "padded" with one more row/column of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete 3x3 neighborhood. Those rows and columns are removed from the filtered result before returning it.
+The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it. This means, for instance, thet the outermost rows and columns in the result will be \code{NA} when using \code{na.rm=FALSE}.
 }
 \examples{
 # Small example
 data(dem)
-dem1 = focal2(dem, matrix(1, 3, 3), "mean")
-r = c(dem, round(dem1, 1), along = 3)
-r = st_set_dimensions(r, 3, values = c("input", "mean"))
+dem_mean3 = focal2(dem, matrix(1, 3, 3), "mean")
+r = c(dem, round(dem_mean3, 1), along = 3)
+r = st_set_dimensions(r, 3, values = c("input", "mean (k=3)"))
 plot(r, text_values = TRUE, breaks = "equal", col = terrain.colors(10))
 
 \dontrun{
 
 # Larger example
 data(carmel)
-carmel1 = focal2(carmel, matrix(1, 15, 15), "mean")
-r = c(carmel, round(carmel1, 1), along = 3)
-r = st_set_dimensions(r, 3, values = c("input", "mean"))
+carmel_mean15 = focal2(carmel, matrix(1, 15, 15), "mean")
+r = c(carmel, carmel_mean15, along = 3)
+r = st_set_dimensions(r, 3, values = c("input", "mean (k=15)"))
 plot(r, breaks = "equal", col = terrain.colors(10))
 
 }

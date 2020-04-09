@@ -1,5 +1,5 @@
 Package: starsExtra
-Title: Miscellaneous functions for working with stars rasters
+Title: Miscellaneous Functions for Working with 'stars' Rasters
 Version: 0.0.3
 Authors@R: 
     person("Michael", "Dorman", email = "dorman@post.bgu.ac.il", role = c("aut", "cre"))
@@ -11,7 +11,8 @@ Depends:
 Imports:
     methods,
     parallel,
-    mgcv
+    mgcv,
+    nngeo
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

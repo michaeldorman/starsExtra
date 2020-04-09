@@ -11,6 +11,6 @@ names(dem) = "elevation"
 dem = dem[, 5687:6287, 2348:2948]
 dem = st_normalize(dem)
 dem = st_warp(src = dem, crs = 32636, method = "near", cellsize = 90)
-carmel = dem
 
+carmel = dem
 usethis::use_data(carmel)

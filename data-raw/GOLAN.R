@@ -1,6 +1,7 @@
 ## code to prepare `golan` dataset
 
 library(stars)
+library(nngeo)
 
 r = read_stars("~/Sync/Layers/Israel_SRTM_1arc/SRTM_1arc_UTM.tif")
 aoi = st_read('{
@@ -44,6 +45,14 @@ aoi = st_bbox(aoi)
 aoi = st_as_sfc(aoi)
 r = r[aoi]
 r = st_normalize(r)
-golan = r
+r = r[, 1:740, 1:824]
+r = round(r, 1)
 
+# w = water
+# w = w[w$name == "Sea of Galilee", ]
+# w = st_geometry(w)
+# w = st_transform(w, st_crs(r))
+# level = aggregate(r, w, min)
+
+golan = r
 usethis::use_data(golan)

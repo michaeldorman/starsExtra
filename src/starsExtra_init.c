@@ -2,10 +2,14 @@
 #include <R_ext/Rdynload.h>
 
 /* .C calls */
-extern void focal2c(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void aspect_c(void *, void *, void *, void *, void *, void *);
+extern void CI_c(void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void focal2_c(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 
 static const R_CMethodDef CEntries[] = {
-    {"focal2c", (DL_FUNC) &focal2c, 11},
+    {"aspect_c", (DL_FUNC) &aspect_c,  6},
+    {"CI_c",     (DL_FUNC) &CI_c,      9},
+    {"focal2_c", (DL_FUNC) &focal2_c, 11},
     {NULL, NULL, 0}
 };
 

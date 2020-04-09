@@ -1,34 +1,35 @@
 #' Apply a focal filter on a raster
 #'
-#' Applies a focal filter with neighborhood size \code{k}*\code{k} on a raster (class \code{stars}), using C code.
+#' Applies a focal filter with neighborhood size \code{k}*\code{k} on a raster (class \code{stars}).
 #'
-#' @param	x	A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster
+#' @param x A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster
 #' @param w Weights matrix defining the neighborhood size around the focal cell, as well as the weights. For example, \code{matrix(1,3,3)} implies a neighborhood of size 3*3 with equal weights of 1 for all cells. The matrix must be square, with odd number of rows and columns.
 #' @param fun A function to aggregate the resulting values for each neighborhood. Possible values are: \code{"mean"}, \code{"sum"}, \code{"min"}, \code{"max"}. The default is \code{"mean"}, i.e., the resulting values per neighborhood are \emph{averaged} before being assigned to the new focal cell value.
 #' @param weight_fun A function which is applied for each pair of cell value and weight value. Possible values are: \code{"+"}, \code{"-"}, \code{"*"}, \code{"/"}. The default is \code{"*"}, i.e., each cell value is \emph{multiplied} by the respective weight.
-#' @param na.rm Should \code{NA} values be removed before applying function? Dafault is \code{TRUE}
-#' @param mask If \code{TRUE}, pixels with \code{NA} in the input are set to \code{NA} in the output as well, i.e., the output is "masked" with the input (default \code{FALSE})
+#' @param na.rm Should \code{NA} values be removed before applying function? Default is \code{TRUE}.
+#' @param mask If \code{TRUE}, pixels with \code{NA} in the input are set to \code{NA} in the output as well, i.e., the output is "masked" with the input (default is \code{FALSE}).
 #' @param na_flag Value use to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the raster (default is \code{-9999}).
 #' @return The filtered \code{stars} raster
 #'
-#' @note The raster is "padded" with one more row/column of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete 3x3 neighborhood. Those rows and columns are removed from the filtered result before returning it.
+#' @note The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it. This means, for instance, thet the outermost rows and columns in the result will be \code{NA} when using \code{na.rm=FALSE}.
+#'
 #' @references The function interface was inspired by function \code{raster::focal}. The C code for this function is a modified and expanded version of the C function named \code{applyKernel} included with package \code{spatialfil}.
 #'
 #' @examples
 #' # Small example
 #' data(dem)
-#' dem1 = focal2(dem, matrix(1, 3, 3), "mean")
-#' r = c(dem, round(dem1, 1), along = 3)
-#' r = st_set_dimensions(r, 3, values = c("input", "mean"))
+#' dem_mean3 = focal2(dem, matrix(1, 3, 3), "mean")
+#' r = c(dem, round(dem_mean3, 1), along = 3)
+#' r = st_set_dimensions(r, 3, values = c("input", "mean (k=3)"))
 #' plot(r, text_values = TRUE, breaks = "equal", col = terrain.colors(10))
 #'
 #' \dontrun{
 #'
 #' # Larger example
 #' data(carmel)
-#' carmel1 = focal2(carmel, matrix(1, 15, 15), "mean")
-#' r = c(carmel, round(carmel1, 1), along = 3)
-#' r = st_set_dimensions(r, 3, values = c("input", "mean"))
+#' carmel_mean15 = focal2(carmel, matrix(1, 15, 15), "mean")
+#' r = c(carmel, carmel_mean15, along = 3)
+#' r = st_set_dimensions(r, 3, values = c("input", "mean (k=15)"))
 #' plot(r, breaks = "equal", col = terrain.colors(10))
 #'
 #' }
@@ -61,7 +62,7 @@ focal2 = function(x, w, fun = "mean", weight_fun = "*", na.rm = FALSE, mask = FA
 
   # Index matrix for the kernel
   kindex = NULL
-  for(n in -steps:steps)  # Index for columns
+  for(n in -steps:steps)    # Index for columns
     for(m in -steps:steps)  # Index for rows
       kindex = c(kindex, n*ncols + m)
 
@@ -85,7 +86,7 @@ focal2 = function(x, w, fun = "mean", weight_fun = "*", na.rm = FALSE, mask = FA
 
   # Apply filter
   result = .C(
-    "focal2c",
+    "focal2_c",
     as.double(input_vector2),
     as.integer(nrows),
     as.integer(ncols),

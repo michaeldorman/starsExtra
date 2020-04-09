@@ -43,6 +43,16 @@
 #' plot(veg*1, text_values = TRUE, breaks = "equal", col = rev(terrain.colors(2)))
 #' plot(round(fl, 1), text_values = TRUE, breaks = "equal", col = terrain.colors(6))
 #'
+#' \dontrun{
+#'
+#' data(carmel)
+#' elev = carmel
+#' elev[is.na(elev)] = 0
+#' veg = elev > 100
+#' fl = flowlength(elev, veg)
+#'
+#' }
+#'
 #' @export
 
 # Function to calculate 'flowlength' matrix

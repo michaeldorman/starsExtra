@@ -3,16 +3,46 @@
         "definitions" : [
             {
                 "column" : 6,
+                "file" : "/home/michael/Dropbox/Packages/starsExtra/src/CI.c",
+                "kind" : 6,
+                "line" : 4,
+                "name" : "CI_c(double *, int *, int *, double *, int *, int *, double *, double *)",
+                "parent_name" : "",
+                "usr" : "c:@F@CI_c#*d#*I#S1_#S0_#S1_#S1_#S0_#S0_#"
+            }
+        ],
+        "file" : "/home/michael/Dropbox/Packages/starsExtra/src/CI.c",
+        "file_last_write" : 1586376919.000000
+    },
+    {
+        "definitions" : [
+            {
+                "column" : 6,
+                "file" : "/home/michael/Dropbox/Packages/starsExtra/src/aspect.c",
+                "kind" : 6,
+                "line" : 3,
+                "name" : "aspect_c(double *, int *, int *, double *, int *, double *, double *)",
+                "parent_name" : "",
+                "usr" : "c:@F@aspect_c#*d#*I#S1_#S0_#S1_#S0_#S0_#"
+            }
+        ],
+        "file" : "/home/michael/Dropbox/Packages/starsExtra/src/aspect.c",
+        "file_last_write" : 1586376915.000000
+    },
+    {
+        "definitions" : [
+            {
+                "column" : 6,
                 "file" : "/home/michael/Dropbox/Packages/starsExtra/src/focal2.c",
                 "kind" : 6,
                 "line" : 3,
-                "name" : "focal2c(double *, int *, int *, double *, int *, int *, int *, double *, int *, int *, double *)",
+                "name" : "focal2_c(double *, int *, int *, double *, int *, int *, int *, double *, int *, int *, double *)",
                 "parent_name" : "",
-                "usr" : "c:@F@focal2c#*d#*I#S1_#S0_#S1_#S1_#S1_#S0_#S1_#S1_#S0_#"
+                "usr" : "c:@F@focal2_c#*d#*I#S1_#S0_#S1_#S1_#S1_#S0_#S1_#S1_#S0_#"
             }
         ],
         "file" : "/home/michael/Dropbox/Packages/starsExtra/src/focal2.c",
-        "file_last_write" : 1586003734.000000
+        "file_last_write" : 1586376923.000000
     },
     {
         "definitions" : [
@@ -20,13 +50,13 @@
                 "column" : 6,
                 "file" : "/home/michael/Dropbox/Packages/starsExtra/src/starsExtra_init.c",
                 "kind" : 6,
-                "line" : 12,
+                "line" : 16,
                 "name" : "R_init_starsExtra(DllInfo *)",
                 "parent_name" : "",
                 "usr" : "c:@F@R_init_starsExtra#*$@S@_DllInfo#"
             }
         ],
         "file" : "/home/michael/Dropbox/Packages/starsExtra/src/starsExtra_init.c",
-        "file_last_write" : 1585998082.000000
+        "file_last_write" : 1586377728.000000
     }
 ]
