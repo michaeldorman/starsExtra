@@ -7,10 +7,10 @@
 layer_to_matrix(r)
 }
 \arguments{
-\item{r}{A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster}
+\item{r}{A \code{stars} raster with one attribute and two dimensions, \code{x} and \code{y}, i.e., a single-band raster.}
 }
 \value{
-A \code{matrix} with the layer values, having the same orientation as the raster (i.e., rows represent the y-axis and columns represent the x-axis)
+A \code{matrix} with the layer values, having the same orientation as the raster (i.e., rows represent the y-axis and columns represent the x-axis).
 }
 \description{
 Extracts the values of a single layer in a \code{stars} object to a \code{matrix}.

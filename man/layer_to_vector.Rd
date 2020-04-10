@@ -10,7 +10,7 @@ layer_to_vector(r)
 \item{r}{A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster}
 }
 \value{
-A vector with the layer values, ordered from top-left corner to the right.
+A vector with cell values, ordered by rows, starting from the top left corner (north-west) and to the right.
 }
 \description{
 Extracts the values of a single layer in a \code{stars} object to a vector. Cell values are ordered from top-left corner to the right.

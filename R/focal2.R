@@ -1,19 +1,19 @@
 #' Apply a focal filter on a raster
 #'
-#' Applies a focal filter with neighborhood size \code{k}*\code{k} on a raster (class \code{stars}).
+#' Applies a focal filter with neighborhood size \code{k}*\code{k} on a raster. Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 #'
-#' @param x A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster
+#' @param x A raster (class \code{stars}) with one attribute and two dimensions: \code{x} and \code{y}, i.e., a single-band raster.
 #' @param w Weights matrix defining the neighborhood size around the focal cell, as well as the weights. For example, \code{matrix(1,3,3)} implies a neighborhood of size 3*3 with equal weights of 1 for all cells. The matrix must be square, with odd number of rows and columns.
 #' @param fun A function to aggregate the resulting values for each neighborhood. Possible values are: \code{"mean"}, \code{"sum"}, \code{"min"}, \code{"max"}. The default is \code{"mean"}, i.e., the resulting values per neighborhood are \emph{averaged} before being assigned to the new focal cell value.
-#' @param weight_fun A function which is applied for each pair of cell value and weight value. Possible values are: \code{"+"}, \code{"-"}, \code{"*"}, \code{"/"}. The default is \code{"*"}, i.e., each cell value is \emph{multiplied} by the respective weight.
-#' @param na.rm Should \code{NA} values be removed before applying function? Default is \code{TRUE}.
+#' @param weight_fun A function (operator) which is applied on each pair of values comprising the cell value and the respective weight value. Possible values are: \code{"+"}, \code{"-"}, \code{"*"}, \code{"/"}. The default is \code{"*"}, i.e., each cell value is \emph{multiplied} by the respective weight.
+#' @param na.rm Should \code{NA} values in the neighborhood be removed from the calculation? Default is \code{FALSE}.
 #' @param mask If \code{TRUE}, pixels with \code{NA} in the input are set to \code{NA} in the output as well, i.e., the output is "masked" with the input (default is \code{FALSE}).
-#' @param na_flag Value use to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the raster (default is \code{-9999}).
-#' @return The filtered \code{stars} raster
+#' @param na_flag Value used to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the input raster \code{x} (default is \code{-9999}).
+#' @return The filtered \code{stars} raster.
 #'
 #' @note The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it. This means, for instance, thet the outermost rows and columns in the result will be \code{NA} when using \code{na.rm=FALSE}.
 #'
-#' @references The function interface was inspired by function \code{raster::focal}. The C code for this function is a modified and expanded version of the C function named \code{applyKernel} included with package \code{spatialfil}.
+#' @references The function interface was inspired by function \code{raster::focal}. The C code for this function is a modified and expanded version of the C function named \code{applyKernel} included with R package \code{spatialfil}.
 #'
 #' @examples
 #' # Small example

@@ -2,11 +2,11 @@
 #'
 #' Get the values of a \code{k}*\code{k} neighborhood, as vector and by row, given a \code{matrix}, \code{k}, and focal cell position (row and column).
 #'
-#' @param m A \code{matrix}
-#' @param pos The focal cell position, a \code{numeric} vector of length two of the form \code{c(row, column)}
+#' @param m A \code{matrix}.
+#' @param pos The focal cell position, a \code{numeric} vector of length two of the form \code{c(row, column)}.
 #' @param k Neighborhood size around the focal cell. For example, \code{k=3} implies a neighborhood of size 3*3. Must be an odd positive integer.
 #'
-#' @return A vector with cell values, ordered by row starting from the top left corner of the neighborhood and to the right. Note that when neighborhood extends beyond matrix bounds, only the "existing" values are returned.
+#' @return A vector with cell values, ordered by rows, starting from the top left corner of the neighborhood and to the right. When neighborhood extends beyond matrix bounds, only the "existing" values are returned.
 #' @export
 #'
 #' @examples
@@ -14,7 +14,7 @@
 #' m
 #' matrix_get_neighbors(m, pos = c(2, 2), k = 3)
 #' matrix_get_neighbors(m, pos = c(2, 2), k = 5)
-#' matrix_get_neighbors(m, pos = c(2, 2), k = 7)  # Same result as previous expression
+#' matrix_get_neighbors(m, pos = c(2, 2), k = 7)  # Same result
 
 matrix_get_neighbors = function(m, pos, k = 3) {
   check_odd_k(k)

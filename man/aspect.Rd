@@ -9,16 +9,16 @@ aspect(x, na_flag = -9999)
 \arguments{
 \item{x}{A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster, representing a DEM.}
 
-\item{na_flag}{Value use to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the raster (default is \code{-9999}).}
+\item{na_flag}{Value used to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the input raster \code{x} (default is \code{-9999}).}
 }
 \value{
-A \code{stars} raster with topographic slope, i.e., the azimuth where the terrain is tilted towards, in decimal degrees (0-360) clockwise from north. Flat terrain, i.e., when all values in the neighborhood are equal, gets the value of \code{-1}.
+A \code{stars} raster with topographic slope, i.e., the azimuth where the terrain is tilted towards, in decimal degrees (0-360) clockwise from north. Aspect of flat terrain, i.e., where all values in the neighborhood are equal, is set to \code{-1}. Returned raster values are of class \code{units} (decimal degrees).
 }
 \description{
-Calculates topographic aspect given a Digital Elevation Model (DEM) raster
+Calculates topographic aspect given a Digital Elevation Model (DEM) raster. Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 }
 \note{
-Aspect calculation results in \code{NA} when at least one of the cell neighbors is \code{NA}, including the outermost rows and columns.
+Aspect calculation results in \code{NA} when at least one of the cell neighbors is \code{NA}, including the outermost rows and columns. Given that the focal window size in aspect calculation is 3*3, this means that the outermost one row and one column are given an aspect value of \code{NA}.
 }
 \examples{
 # Small example
@@ -32,10 +32,10 @@ plot(r, text_values = TRUE, breaks = "equal", col = hcl.colors(11, "Spectral"))
 
 # Larger example
 data(carmel)
-carmel1 = aspect(carmel)
-r = c(carmel, round(carmel1, 1), along = 3)
+carmel_asp = aspect(carmel)
+r = c(carmel, round(carmel_asp, 1), along = 3)
 r = st_set_dimensions(r, 3, values = c("input", "aspect"))
-plot(r, breaks = "equal", hcl.colors(11, "Spectral"))
+plot(r, breaks = "equal", col = hcl.colors(11, "Spectral"))
 
 }
 

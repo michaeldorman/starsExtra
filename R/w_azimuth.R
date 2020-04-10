@@ -11,12 +11,6 @@
 #' m = w_azimuth(5)
 #' m
 #'
-#' \dontrun{
-#'
-#' add convergence index example...
-#'
-#' }
-#'
 #' @export
 
 w_azimuth = function(k) {

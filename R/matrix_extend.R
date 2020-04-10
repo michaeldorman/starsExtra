@@ -17,7 +17,7 @@
 #' matrix_extend(m, 3)
 
 matrix_extend = function(m, n = 1, fill = NA) {
-  m2 = matrix(NA, nrow = nrow(m)+n*2, ncol = ncol(m)+n*2)
+  m2 = matrix(fill, nrow = nrow(m)+n*2, ncol = ncol(m)+n*2)
   m2[(1+n):(nrow(m2)-n), (1+n):(ncol(m2)-n)] = m
   m2
 }

@@ -7,21 +7,23 @@
 CI(x, k, na.rm = FALSE, na_flag = -9999)
 }
 \arguments{
-\item{x}{A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster, representing slope in decimal degrees (possibly including \code{-1} to specify flat terrain).}
+\item{x}{A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster, representing aspect in decimal degrees clockwise from north, possibly including \code{-1} to specify flat terrain, such as returned by function \code{\link{aspect}}.}
 
 \item{k}{k Neighborhood size around focal cell. Must be an odd number. For example, \code{k=3} implies a 3*3 neighborhood.}
 
-\item{na_flag}{Value use to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the raster (default is \code{-9999}).}
+\item{na.rm}{Should \code{NA} values be ignored when calculating CI? Default is \code{FALSE}, i.e., when at least one aspect value in the neighborhood is \code{NA} the CI is also set to \code{NA}.}
+
+\item{na_flag}{Value used to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the input raster \code{x} (default is \code{-9999}).}
 }
 \value{
-The filtered \code{stars} raster
+A \code{stars} raster with CI values.
 }
 \description{
-Calculates the Convergence Index (CI) given a topographic slope raster
+Calculates the Convergence Index (CI) given a topographic slope raster. Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 }
 \note{
 The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it.
-Aspect values of \code{-1}, specifying flat terrain, are assigned with a CI value of \code{0} regardless of their neighbor values.
+Aspect values of \code{-1}, specifying flat terrain, are assigned with a CI value of \code{0} regardless of their neighboring values.
 }
 \examples{
 # Small example

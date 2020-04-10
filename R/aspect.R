@@ -1,12 +1,12 @@
 #' Calculate topographic aspect from a DEM
 #'
-#' Calculates topographic aspect given a Digital Elevation Model (DEM) raster
+#' Calculates topographic aspect given a Digital Elevation Model (DEM) raster. Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 #'
 #' @param x A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster, representing a DEM.
-#' @param na_flag Value use to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the raster (default is \code{-9999}).
-#' @return A \code{stars} raster with topographic slope, i.e., the azimuth where the terrain is tilted towards, in decimal degrees (0-360) clockwise from north. Flat terrain, i.e., when all values in the neighborhood are equal, gets the value of \code{-1}.
+#' @param na_flag Value used to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the input raster \code{x} (default is \code{-9999}).
+#' @return A \code{stars} raster with topographic slope, i.e., the azimuth where the terrain is tilted towards, in decimal degrees (0-360) clockwise from north. Aspect of flat terrain, i.e., where all values in the neighborhood are equal, is set to \code{-1}. Returned raster values are of class \code{units} (decimal degrees).
 #'
-#' @note Aspect calculation results in \code{NA} when at least one of the cell neighbors is \code{NA}, including the outermost rows and columns.
+#' @note Aspect calculation results in \code{NA} when at least one of the cell neighbors is \code{NA}, including the outermost rows and columns. Given that the focal window size in aspect calculation is 3*3, this means that the outermost one row and one column are given an aspect value of \code{NA}.
 #'
 #' @references The topographic aspect algorithm is based on the \emph{How aspect works} article in the ArcGIS documentation:
 #'
@@ -24,10 +24,10 @@
 #'
 #' # Larger example
 #' data(carmel)
-#' carmel1 = aspect(carmel)
-#' r = c(carmel, round(carmel1, 1), along = 3)
+#' carmel_asp = aspect(carmel)
+#' r = c(carmel, round(carmel_asp, 1), along = 3)
 #' r = st_set_dimensions(r, 3, values = c("input", "aspect"))
-#' plot(r, breaks = "equal", hcl.colors(11, "Spectral"))
+#' plot(r, breaks = "equal", col = hcl.colors(11, "Spectral"))
 #'
 #' }
 #'
@@ -82,6 +82,11 @@ aspect = function(x, na_flag = -9999) {
   output = matrix_trim(output, n = steps)
   output = t(output)
   template[[1]] = output
+
+  # Set name and units
+  names(template) = "aspect"
+  template[[1]] = units::set_units(template[[1]], "degree")
+
 
   # Return
   return(template)

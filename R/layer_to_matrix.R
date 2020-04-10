@@ -2,8 +2,8 @@
 #'
 #' Extracts the values of a single layer in a \code{stars} object to a \code{matrix}.
 #'
-#' @param	r	A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster
-#' @return A \code{matrix} with the layer values, having the same orientation as the raster (i.e., rows represent the y-axis and columns represent the x-axis)
+#' @param	r	A \code{stars} raster with one attribute and two dimensions, \code{x} and \code{y}, i.e., a single-band raster.
+#' @return A \code{matrix} with the layer values, having the same orientation as the raster (i.e., rows represent the y-axis and columns represent the x-axis).
 #'
 #' @examples
 #' data(dem)
@@ -26,5 +26,3 @@ layer_to_matrix = function(r) {
   return(m)
 
 }
-
-

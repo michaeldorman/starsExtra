@@ -1,4 +1,4 @@
-test_that("focal small mean 3, R vs C", {
+test_that("focal mean 3, R vs C", {
   expect_equal({
     data(carmel)
     carmel1 = focal2(carmel, matrix(1, 3, 3), "mean", na.rm = TRUE)

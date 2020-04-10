@@ -15,11 +15,11 @@ matrix_to_stars(m, res = 1)
 A \code{stars} raster
 }
 \description{
-Converts \code{matrix} to \code{stars}, conserving the matrix orientation where rows become the y-axis and columns become the y-axis.
+Converts \code{matrix} to a single-band \code{stars} raster, conserving the matrix orientation where rows become the y-axis and columns become the y-axis. The bottom-left corner of the axis is set to \code{(0,0)} coordinate, so that x and y coordinates are positive across the raster extent.
 }
 \examples{
 data(volcano)
-r = matrix_to_stars(volcano)
+r = matrix_to_stars(volcano, res = 10)
 plot(r)
 
 }

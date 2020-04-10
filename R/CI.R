@@ -1,14 +1,15 @@
 #' Calculate the Convergence Index (CI) from a slope raster
 #'
-#' Calculates the Convergence Index (CI) given a topographic slope raster
+#' Calculates the Convergence Index (CI) given a topographic slope raster. Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 #'
-#' @param x A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster, representing slope in decimal degrees (possibly including \code{-1} to specify flat terrain).
+#' @param x A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster, representing aspect in decimal degrees clockwise from north, possibly including \code{-1} to specify flat terrain, such as returned by function \code{\link{aspect}}.
 #' @param k k Neighborhood size around focal cell. Must be an odd number. For example, \code{k=3} implies a 3*3 neighborhood.
-#' @param na_flag Value use to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the raster (default is \code{-9999}).
-#' @return The filtered \code{stars} raster
+#' @param na.rm Should \code{NA} values be ignored when calculating CI? Default is \code{FALSE}, i.e., when at least one aspect value in the neighborhood is \code{NA} the CI is also set to \code{NA}.
+#' @param na_flag Value used to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the input raster \code{x} (default is \code{-9999}).
+#' @return A \code{stars} raster with CI values.
 #'
 #' @note The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it.
-#' Aspect values of \code{-1}, specifying flat terrain, are assigned with a CI value of \code{0} regardless of their neighbor values.
+#' Aspect values of \code{-1}, specifying flat terrain, are assigned with a CI value of \code{0} regardless of their neighboring values.
 #'
 #' @references The Convergence Index algorithm is described in:
 #'
@@ -40,6 +41,9 @@ CI = function(x, k, na.rm = FALSE, na_flag = -9999) {
 
   # Check odd 'k'
   check_odd_k(k)
+
+  # Set units to 'NA'
+  if(class(x[[1]]) == "units") x[[1]] = units::drop_units(x[[1]])
 
   # Check range 0-360
   if(any(!is.na(x[[1]]) & ((x[[1]] < 0 & x[[1]] != -1) | x[[1]] > 360))) stop("Raster values must be in [0-360]")
@@ -100,6 +104,9 @@ CI = function(x, k, na.rm = FALSE, na_flag = -9999) {
   output = matrix_trim(output, n = steps)
   output = t(output)
   template[[1]] = output
+
+  # Set name
+  names(template) = "CI"
 
   # Return
   return(template)

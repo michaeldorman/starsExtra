@@ -21,10 +21,4 @@ m
 m = w_azimuth(5)
 m
 
-\dontrun{
-
-add convergence index example...
-
-}
-
 }

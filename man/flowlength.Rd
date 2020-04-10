@@ -7,15 +7,15 @@
 flowlength(elev, veg)
 }
 \arguments{
-\item{elev}{A numeric \code{stars} raster representing a Digital Elevation Model (DEM)}
+\item{elev}{A numeric \code{stars} raster representing a Digital Elevation Model (DEM).}
 
-\item{veg}{A logical \code{stars} raster representing vegetation presence. \code{TRUE} values represent vegetated cells where flow is absorbed (i.e. sinks), \code{FALSE} values represent cells where flow is unobstructed}
+\item{veg}{A matching logical \code{stars} raster representing vegetation presence. \code{TRUE} values represent vegetated cells where flow is absorbed (i.e. sinks), \code{FALSE} values represent cells where flow is unobstructed.}
 }
 \value{
-A numeric \code{stars} raster where each cell value is flow length, in resolution units
+A numeric \code{stars} raster where each cell value is flow length, in resolution units.
 }
 \description{
-Calculates flow length for each pixel in a Digital Elevation Model.
+Calculates flow length for each pixel in a Digital Elevation Model (DEM) raster. Inputs and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 }
 \examples{
 # Example from Fig. 2 in Mayor et al. 2008
