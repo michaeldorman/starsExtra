@@ -1,5 +1,4 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version-ago/starsExtra)](https://cran.r-project.org/package=starsExtra)
 [![CRAN\_Downloads\_Badge](http://cranlogs.r-pkg.org/badges/last-month/starsExtra)](https://cran.r-project.org/package=starsExtra)
 
@@ -34,7 +33,7 @@ Once installed, the library can be loaded as follows.
 ``` r
 library(starsExtra)
 #> Loading required package: sf
-#> Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 7.0.0
+#> Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 5.2.0
 #> Loading required package: stars
 #> Loading required package: abind
 ```
@@ -56,7 +55,7 @@ carmel_mean15 = focal2(
 )
 ```
 
-The calculation takes: 0.173702 secs.
+The calculation takes: 0.240869 secs.
 
 The original DEM and the filtered DEM can be combined and plotted with
 the following expressions:
@@ -68,3 +67,43 @@ plot(r, breaks = "equal", col = terrain.colors(10), key.pos = 4)
 ```
 
 ![](README-focal-example-1.png)
+
+Timing
+------
+
+The following code section compares the calculation time of `focal2` in
+the above example with `raster::focal` (both using C/C++) and the
+reference method `starsExtra:::focal2r` (using R code only).
+
+``` r
+library(microbenchmark)
+library(starsExtra)
+library(raster)
+#> Loading required package: sp
+
+data(carmel)
+carmelr = as(carmel, "Raster")
+
+res = microbenchmark(
+  focal2 = focal2(carmel, w = matrix(1, 15, 15), fun = "mean", na.rm = FALSE), 
+  focal = focal(carmelr, w = matrix(1, 15, 15), fun = mean, na.rm = FALSE),
+  focal2r = starsExtra:::focal2r(carmel, k = 15, mean),
+  times = 10
+)
+res
+#> Unit: milliseconds
+#>     expr        min         lq       mean     median         uq        max
+#>   focal2   200.8827   204.9814   217.6943   211.6963   215.4529   293.2120
+#>    focal   113.7559   118.8068   140.7752   119.7195   121.8459   307.1326
+#>  focal2r 13903.7589 13922.5144 14068.0538 13994.0778 14002.3742 14598.4475
+#>  neval cld
+#>     10  a 
+#>     10  a 
+#>     10   b
+```
+
+``` r
+boxplot(res)
+```
+
+![](README-focal-timing-1.png)

@@ -76,3 +76,27 @@ r = c(carmel, carmel_mean15, along = 3)
 r = st_set_dimensions(r, 3, values = c("input", "15*15 mean filter"))
 plot(r, breaks = "equal", col = terrain.colors(10), key.pos = 4)
 ```
+
+## Timing
+
+The following code section compares the calculation time of `focal2` in the above example with `raster::focal` (both using C/C++) and the reference method `starsExtra:::focal2r` (using R code only).
+
+```{r}
+library(microbenchmark)
+library(starsExtra)
+library(raster)
+
+data(carmel)
+carmelr = as(carmel, "Raster")
+
+res = microbenchmark(
+  focal2 = focal2(carmel, w = matrix(1, 15, 15), fun = "mean", na.rm = FALSE), 
+  focal = focal(carmelr, w = matrix(1, 15, 15), fun = mean, na.rm = FALSE),
+  focal2r = starsExtra:::focal2r(carmel, k = 15, mean),
+  times = 10
+)
+res
+
+```{r focal-timing}
+boxplot(res)
+```
