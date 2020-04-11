@@ -11,7 +11,7 @@
 #' @param na_flag Value used to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the input raster \code{x} (default is \code{-9999}).
 #' @return The filtered \code{stars} raster.
 #'
-#' @note The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it. This means, for instance, thet the outermost rows and columns in the result will be \code{NA} when using \code{na.rm=FALSE}.
+#' @note The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neighborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it. This means, for instance, that the outermost rows and columns in the result will be \code{NA} when using \code{na.rm=FALSE}.
 #'
 #' @references The function interface was inspired by function \code{raster::focal}. The C code for this function is a modified and expanded version of the C function named \code{applyKernel} included with R package \code{spatialfil}.
 #'

@@ -22,7 +22,7 @@ A \code{stars} raster with CI values.
 Calculates the Convergence Index (CI) given a topographic slope raster. Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 }
 \note{
-The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it.
+The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neighborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it.
 Aspect values of \code{-1}, specifying flat terrain, are assigned with a CI value of \code{0} regardless of their neighboring values.
 }
 \examples{

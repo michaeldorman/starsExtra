@@ -1,4 +1,4 @@
-#' Get neigboring cell values for given matrix cell
+#' Get neighboring cell values for given matrix cell
 #'
 #' Get the values of a \code{k}*\code{k} neighborhood, as vector and by row, given a \code{matrix}, \code{k}, and focal cell position (row and column).
 #'

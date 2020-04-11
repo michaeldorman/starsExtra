@@ -8,7 +8,7 @@
 #' @param na_flag Value used to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the input raster \code{x} (default is \code{-9999}).
 #' @return A \code{stars} raster with CI values.
 #'
-#' @note The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it.
+#' @note The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neighborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it.
 #' Aspect values of \code{-1}, specifying flat terrain, are assigned with a CI value of \code{0} regardless of their neighboring values.
 #'
 #' @references The Convergence Index algorithm is described in:

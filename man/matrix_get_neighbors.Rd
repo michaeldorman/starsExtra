@@ -2,7 +2,7 @@
 % Please edit documentation in R/matrix_get_neighbors.R
 \name{matrix_get_neighbors}
 \alias{matrix_get_neighbors}
-\title{Get neigboring cell values for given matrix cell}
+\title{Get neighboring cell values for given matrix cell}
 \usage{
 matrix_get_neighbors(m, pos, k = 3)
 }

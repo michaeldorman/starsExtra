@@ -1,7 +1,7 @@
 ## Test environments
+
 * local Ubuntu 18.04 install, R 3.6.3
 * win-builder (devel and release)
-* R-hub builder
 
 ## R CMD check results
 

@@ -6,7 +6,7 @@
 \alias{starsExtra-package}
 \title{starsExtra: Miscellaneous Functions for Working with 'stars' Rasters}
 \description{
-Miscellaneous functions for working with 'stars' objects, mainly single-band rasters. Currently includes functions for: (1) focal filtering, (2) detrending of Digital Elevation Models, and (3) calculating flow length.
+Miscellaneous functions for working with 'stars' objects, mainly single-band rasters. Currently includes functions for: (1) focal filtering, (2) detrending of Digital Elevation Models, (3) calculating flow length, (4) calculating the Convergence Index, (5) calculating topographic aspect.
 }
 \author{
 \strong{Maintainer}: Michael Dorman \email{dorman@post.bgu.ac.il}

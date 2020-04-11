@@ -36,7 +36,7 @@ The filtered \code{stars} raster.
 Applies a focal filter with neighborhood size \code{k}*\code{k} on a raster. Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 }
 \note{
-The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it. This means, for instance, thet the outermost rows and columns in the result will be \code{NA} when using \code{na.rm=FALSE}.
+The raster is "padded" with \code{(k-1)/2} more rows and columns of \code{NA} values on all sides, so that the neighborhood of the outermost rows and columns is still a complete neighborhood. Those rows and columns are removed from the final result before returning it. This means, for instance, that the outermost rows and columns in the result will be \code{NA} when using \code{na.rm=FALSE}.
 }
 \examples{
 # Small example

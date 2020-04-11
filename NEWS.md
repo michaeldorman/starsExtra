@@ -9,11 +9,11 @@
 * Added 'w_circle' function
 * Added 'CI' function
 * Added 'aspect' function
+* Added vignette with illustrations
 
 # To do
 
-* Add vignette with illustrations
 * Add flow accumulation function
 * Add pit fill function
-* Aff river network function
+* Add river network function
 * Add slope function
