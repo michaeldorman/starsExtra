@@ -12,8 +12,7 @@
 # @note The raster is "padded" with one more row/column of \code{NA} values on all sides, so that the neigborhood of the outermost rows and columns is still a complete 3x3 neighborhood. Those rows and columns are removed from the filtered result before returning it.
 #
 # @examples
-# \dontrun{
-#
+# \donttest{
 # # Small example
 # data(dem)
 # dem1 = focal2r(dem, 3, mean, na.rm = TRUE)
@@ -22,7 +21,6 @@
 # r = c(dem, round(dem1, 1), dem2, dem3, along = 3)
 # r = st_set_dimensions(r, 3, values = c("input", "mean", "min", "max"))
 # plot(r, text_values = TRUE, breaks = "equal", col = terrain.colors(10))
-#
 # # Larger example
 # data(carmel)
 # carmel1 = focal2r(carmel, 3, mean, na.rm = TRUE, mask = TRUE)
@@ -31,7 +29,6 @@
 # r = c(carmel, carmel1, carmel2, carmel3, along = 3)
 # r = st_set_dimensions(r, 3, values = c("input", "k=3", "k=9", "k=15"))
 # plot(r, breaks = "equal", col = terrain.colors(100))
-#
 # }
 
 # Apply focal filter

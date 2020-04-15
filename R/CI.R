@@ -23,15 +23,12 @@
 #' r = c(dem, round(dem_ci, 1), along = 3)
 #' r = st_set_dimensions(r, 3, values = c("input", "CI (k=3)"))
 #' plot(r, text_values = TRUE, breaks = "equal", col = terrain.colors(10))
-#'
-#' \dontrun{
-#'
+#' \donttest{
 #' # Larger example
 #' data(golan)
 #' golan_asp = aspect(golan)
 #' golan_ci = CI(golan_asp, k = 25)
 #' plot(golan_ci)
-#'
 #' }
 #'
 #' @export

@@ -13,28 +13,26 @@
 #' @export
 #'
 #' @examples
+#' # Small example
 #' data(dem)
 #' dem1 = detrend(dem)
 #' dem1 = st_redimension(dem1)
 #' dem1 = st_set_dimensions(dem1, 3, values = c("resid", "trend"))
 #' plot(round(dem1), text_values = TRUE, col = terrain.colors(11))
-#'
-#' \dontrun{
-#'
+#' \donttest{
 #' # Larger example 1
 #' data(carmel)
-#' carmel1 = detrend(carmel, parallel = 3)
+#' carmel1 = detrend(carmel, parallel = 2)
 #' carmel1 = st_redimension(carmel1)
 #' carmel1 = st_set_dimensions(carmel1, 3, values = c("resid", "trend"))
 #' plot(carmel1, col = terrain.colors(11))
 #'
 #' # Larger example 2
 #' data(golan)
-#' golan1 = detrend(golan, parallel = 3)
+#' golan1 = detrend(golan, parallel = 2)
 #' golan1 = st_redimension(golan1)
 #' golan1 = st_set_dimensions(golan1, 3, values = c("resid", "trend"))
 #' plot(golan1, col = terrain.colors(11))
-#'
 #' }
 
 

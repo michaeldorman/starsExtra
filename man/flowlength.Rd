@@ -48,17 +48,15 @@ fl = flowlength(elev, veg)
 plot(round(elev, 1), text_values = TRUE, breaks = "equal", col = terrain.colors(6))
 plot(veg*1, text_values = TRUE, breaks = "equal", col = rev(terrain.colors(2)))
 plot(round(fl, 1), text_values = TRUE, breaks = "equal", col = terrain.colors(6))
-
-\dontrun{
-
+\donttest{
+# Larger example
 data(carmel)
 elev = carmel
 elev[is.na(elev)] = 0
 veg = elev > 100
 fl = flowlength(elev, veg)
-
+plot(fl)
 }
-
 }
 \references{
 The algorithm is described in:
