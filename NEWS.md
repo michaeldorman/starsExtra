@@ -1,4 +1,4 @@
-# starsExtra 0.0.3
+# starsExtra 0.0.3 (2020-04-22)
 
 * Initial version
 * Added 'focal2r' and 'focal2' functions
@@ -13,7 +13,5 @@
 
 # To do
 
-* Add flow accumulation function
-* Add pit fill function
-* Add river network function
 * Add slope function
+* Replace 'if' with 'switch' in C code

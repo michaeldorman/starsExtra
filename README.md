@@ -18,6 +18,12 @@ includes functions for:
 Installation
 ------------
 
+CRAN version:
+
+``` r
+install.packages("starsExtra")
+```
+
 GitHub version:
 
 ``` r
@@ -55,7 +61,7 @@ carmel_mean15 = focal2(
 )
 ```
 
-The calculation takes: 0.240869 secs.
+The calculation takes: 0.2358196 secs.
 
 The original DEM and the filtered DEM can be combined and plotted with
 the following expressions:
@@ -93,9 +99,9 @@ res = microbenchmark(
 res
 #> Unit: milliseconds
 #>     expr        min         lq       mean     median         uq        max
-#>   focal2   200.8827   204.9814   217.6943   211.6963   215.4529   293.2120
-#>    focal   113.7559   118.8068   140.7752   119.7195   121.8459   307.1326
-#>  focal2r 13903.7589 13922.5144 14068.0538 13994.0778 14002.3742 14598.4475
+#>   focal2   201.5447   206.3138   248.3988   228.6944   299.8767   309.1590
+#>    focal   120.3913   122.4506   146.6245   126.1919   131.8618   302.1532
+#>  focal2r 14149.8486 14464.7892 14771.0747 14752.4548 15128.0667 15462.0797
 #>  neval cld
 #>     10  a 
 #>     10  a 

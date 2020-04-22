@@ -29,6 +29,12 @@ R package `starsExtra` provides several miscellaneous functions for working with
 
 ## Installation
 
+CRAN version:
+
+```{r installation1, eval=FALSE}
+install.packages("starsExtra")
+```
+
 GitHub version:
 
 ```{r installation2, eval=FALSE}
