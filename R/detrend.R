@@ -35,7 +35,6 @@
 #' plot(golan1, col = terrain.colors(11))
 #' }
 
-
 detrend = function(x, parallel = 1) {
 
   # Checks

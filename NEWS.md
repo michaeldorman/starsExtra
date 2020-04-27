@@ -11,7 +11,13 @@
 * Added 'aspect' function
 * Added vignette with illustrations
 
+# starsExtra 0.1.0
+
+* Added 'trim' function
+
 # To do
 
+* Parallel processing in 'CI' function
 * Add slope function
 * Replace 'if' with 'switch' in C code
+
