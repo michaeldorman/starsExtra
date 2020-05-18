@@ -18,6 +18,6 @@
 # To do
 
 * Parallel processing in 'CI' function
-* Add slope function
+* Add 'slope' function
 * Replace 'if' with 'switch' in C code
 

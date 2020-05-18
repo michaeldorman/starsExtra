@@ -48,11 +48,10 @@ remotes::install_github("michaeldorman/starsExtra")
 
 ## Usage
 
-Once installed, the library can be loaded as follows.
+Once installed, the library can be loaded as follows:
 
 ```{r}
 library(starsExtra)
-library(units)
 ```
 
 ## Examples
