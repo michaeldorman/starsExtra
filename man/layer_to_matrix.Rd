@@ -4,10 +4,12 @@
 \alias{layer_to_matrix}
 \title{Get \code{stars} layer values as matrix}
 \usage{
-layer_to_matrix(r)
+layer_to_matrix(x, check = TRUE)
 }
 \arguments{
-\item{r}{A \code{stars} raster with one attribute and two dimensions, \code{x} and \code{y}, i.e., a single-band raster.}
+\item{x}{A \code{stars} raster with one attribute and two dimensions, \code{x} and \code{y}, i.e., a single-band raster.}
+
+\item{check}{Whether to check (and fix if necessary) that input has one attribute, one layer and x-y as dimensions 1-2 (default is \code{TRUE}).}
 }
 \value{
 A \code{matrix} with the layer values, having the same orientation as the raster (i.e., rows represent the y-axis and columns represent the x-axis).

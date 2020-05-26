@@ -1,37 +1,36 @@
-#' Calculate topographic aspect from a DEM
+#' Calculate topographic slope from a DEM
 #'
-#' Calculates topographic aspect given a Digital Elevation Model (DEM) raster. Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
+#' Calculates topographic slope given a Digital Elevation Model (DEM) raster. Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 #'
 #' @param x A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster, representing a DEM.
 #' @param na_flag Value used to mark \code{NA} values in C code. This should be set to a value which is guaranteed to be absent from the input raster \code{x} (default is \code{-9999}).
-#' @return A \code{stars} raster with topographic slope, i.e., the azimuth where the terrain is tilted towards, in decimal degrees (0-360) clockwise from north. Aspect of flat terrain, i.e., where all values in the neighborhood are equal, is set to \code{-1}. Returned raster values are of class \code{units} (decimal degrees).
+#' @return A \code{stars} raster with topographic slope, i.e., the azimuth where the terrain is tilted towards, in decimal degrees (0-360) clockwise from north.
 #'
-#' @note Aspect calculation results in \code{NA} when at least one of the cell neighbors is \code{NA}, including the outermost rows and columns. Given that the focal window size in aspect calculation is 3*3, this means that the outermost one row and one column are given an aspect value of \code{NA}.
+#' @note Slope calculation results in \code{NA} when at least one of the cell neighbors is \code{NA}, including the outermost rows and columns. Given that the focal window size in slope calculation is 3*3, this means that the outermost one row and one column are given an slope value of \code{NA}.
 #'
-#' @references The topographic aspect algorithm is based on the \emph{How aspect works} article in the ArcGIS documentation:
+#' @references The topographic slope algorithm is based on the \emph{How slope works} article in the ArcGIS documentation:
 #'
-#' \url{https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-aspect-works.htm}
+#' \url{https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/how-slope-works.htm}
 #'
 #' @examples
 #' # Small example
 #' data(dem)
-#' aspect = aspect(dem)
-#' r = c(dem, round(aspect, 1), along = 3)
-#' r = st_set_dimensions(r, 3, values = c("input", "aspect"))
+#' slope = slope(dem)
+#' r = c(dem, round(slope, 1), along = 3)
+#' r = st_set_dimensions(r, 3, values = c("input", "slope"))
 #' plot(r, text_values = TRUE, breaks = "equal", col = hcl.colors(11, "Spectral"))
 #' \donttest{
 #' # Larger example
 #' data(carmel)
-#' carmel_aspect = aspect(carmel)
-#' r = c(carmel, round(carmel_aspect, 1), along = 3)
-#' r = st_set_dimensions(r, 3, values = c("input", "aspect"))
+#' carmel_slope = slope(carmel)
+#' r = c(carmel, round(carmel_slope, 1), along = 3)
+#' r = st_set_dimensions(r, 3, values = c("input", "slope"))
 #' plot(r, breaks = "equal", col = hcl.colors(11, "Spectral"))
 #' }
 #'
 #' @export
 
-# Apply focal filter
-aspect = function(x, na_flag = -9999) {
+slope = function(x, na_flag = -9999) {
 
   # Checks
   x = check_one_attribute(x)
@@ -66,14 +65,20 @@ aspect = function(x, na_flag = -9999) {
   input_vector2[is.na(input_vector2)] = na_flag
   output_vector2 = rep(na_flag, length(input_vector2))
 
+  # Cellsize
+  cellsize_x = abs(st_dimensions(x)[[1]][["delta"]])
+  cellsize_y = abs(st_dimensions(x)[[2]][["delta"]])
+
   # Apply filter
   result = .C(
-    "aspect_c",
+    "slope_c",
     as.double(input_vector2),
     as.integer(nrows),
     as.integer(ncols),
     as.integer(kindex),
     as.double(na_flag),
+    as.double(cellsize_x),
+    as.double(cellsize_y),
     as.double(output_vector2)
   )
   output_vector = result[[length(result)]]
@@ -86,7 +91,7 @@ aspect = function(x, na_flag = -9999) {
   template[[1]] = output
 
   # Set name and units
-  names(template) = "aspect"
+  names(template) = "slope"
   template[[1]] = units::set_units(template[[1]], "degree")
 
 
@@ -94,9 +99,3 @@ aspect = function(x, na_flag = -9999) {
   return(template)
 
 }
-
-
-
-
-
-

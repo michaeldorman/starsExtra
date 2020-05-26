@@ -31,7 +31,6 @@
 # plot(r, breaks = "equal", col = terrain.colors(100))
 # }
 
-# Apply focal filter
 focal2r = function(x, k = 3, fun, mask = FALSE, ...) {
 
   # Checks

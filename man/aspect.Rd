@@ -30,8 +30,8 @@ plot(r, text_values = TRUE, breaks = "equal", col = hcl.colors(11, "Spectral"))
 \donttest{
 # Larger example
 data(carmel)
-carmel_asp = aspect(carmel)
-r = c(carmel, round(carmel_asp, 1), along = 3)
+carmel_aspect = aspect(carmel)
+r = c(carmel, round(carmel_aspect, 1), along = 3)
 r = st_set_dimensions(r, 3, values = c("input", "aspect"))
 plot(r, breaks = "equal", col = hcl.colors(11, "Spectral"))
 }

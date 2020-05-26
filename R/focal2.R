@@ -33,24 +33,26 @@
 #'
 #' @export
 
-# Apply focal filter
 focal2 = function(x, w, fun = "mean", weight_fun = "*", na.rm = FALSE, mask = FALSE, na_flag = -9999) {
 
-  # Make template
-  template = x
-
   # Checks
+  x = check_one_attribute(x)
+  x = check_spatial_dimensions(x)
+  x = check_one_layer(x)
   stopifnot(is(w, "matrix"))
   if(any(is.na(w))) { stop("weight matrix 'w' includes 'NA's") }
   if(!nrow(w) == ncol(w)) { stop("weight matrix is not rectangular") }
   stopifnot(fun %in% c("mean", "sum", "min", "max"))
   stopifnot(weight_fun %in% c("+", "-", "*", "/"))
 
+  # Make template
+  template = x
+
   # Number of extra lines
   steps = (nrow(w) - 1) / 2
 
   # To matrix
-  input = layer_to_matrix(template)  # Checks take place here
+  input = layer_to_matrix(template, check = FALSE)
   input = matrix_extend(input, n = steps)
 
   # Matrix dimensions

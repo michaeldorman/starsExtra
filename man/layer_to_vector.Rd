@@ -4,10 +4,12 @@
 \alias{layer_to_vector}
 \title{Get \code{stars} layer values as vector}
 \usage{
-layer_to_vector(r)
+layer_to_vector(x, check = TRUE)
 }
 \arguments{
-\item{r}{A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster}
+\item{x}{A raster (class \code{stars}) with two dimensions: \code{x} and \code{y}, i.e., a single-band raster.}
+
+\item{check}{Whether to check (and fix if necessary) that input has one attribute, one layer and x-y as dimensions 1-2 (default is \code{TRUE}).}
 }
 \value{
 A vector with cell values, ordered by rows, starting from the top left corner (north-west) and to the right.

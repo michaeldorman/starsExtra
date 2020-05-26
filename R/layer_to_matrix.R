@@ -2,7 +2,8 @@
 #'
 #' Extracts the values of a single layer in a \code{stars} object to a \code{matrix}.
 #'
-#' @param	r	A \code{stars} raster with one attribute and two dimensions, \code{x} and \code{y}, i.e., a single-band raster.
+#' @param	x	A \code{stars} raster with one attribute and two dimensions, \code{x} and \code{y}, i.e., a single-band raster.
+#' @param check Whether to check (and fix if necessary) that input has one attribute, one layer and x-y as dimensions 1-2 (default is \code{TRUE}).
 #' @return A \code{matrix} with the layer values, having the same orientation as the raster (i.e., rows represent the y-axis and columns represent the x-axis).
 #'
 #' @examples
@@ -12,15 +13,17 @@
 #'
 #' @export
 
-layer_to_matrix = function(r) {
+layer_to_matrix = function(x, check = TRUE) {
 
   # Checks
-  r = check_one_attribute(r)
-  r = check_spatial_dimensions(r)
-  r = check_one_layer(r)
+  if(check) {
+    x = check_one_attribute(x)
+    x = check_spatial_dimensions(x)
+    x = check_one_layer(x)
+  }
 
   # To matrix
-  m = t(r[[1]])
+  m = t(x[[1]])
 
   # Return
   return(m)

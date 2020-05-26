@@ -14,10 +14,11 @@
 # starsExtra 0.1.0
 
 * Added 'trim' function
+* Switched from 'testthat' to 'tinytest'
+* Replaced 'if' with 'switch' in C code
+* Added 'slope' function
 
 # To do
 
 * Parallel processing in 'CI' function
-* Add 'slope' function
-* Replace 'if' with 'switch' in C code
-
+* Add 'extract' function (?exactextractr)

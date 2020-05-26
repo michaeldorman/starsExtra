@@ -89,16 +89,28 @@ plot(carmel_mean9, main = "mean (k=9)", breaks = "equal", col = terrain.colors(1
 plot(carmel_mean27, main = "mean (k=27)", breaks = "equal", col = terrain.colors(10))
 ```
 
-### Topographic aspect
+### Topographic slope
 
 ```{r}
 data(carmel)
-carmel_asp = aspect(carmel)
+carmel_slope = slope(carmel)
 ```
 
 ```{r, fig.width=4, fig.height=6, out.width="45%", fig.show="hold"}
 plot(carmel, breaks = "equal", col = terrain.colors(11))
-plot(carmel_asp, breaks = "equal", col = hcl.colors(11, "Spectral"))
+plot(carmel_slope, breaks = "equal", col = hcl.colors(11, "Spectral"))
+```
+
+### Topographic aspect
+
+```{r}
+data(carmel)
+carmel_aspect = aspect(carmel)
+```
+
+```{r, fig.width=4, fig.height=6, out.width="45%", fig.show="hold"}
+plot(carmel, breaks = "equal", col = terrain.colors(11))
+plot(carmel_aspect, breaks = "equal", col = hcl.colors(11, "Spectral"))
 ```
 
 ### Convergence Index
@@ -114,9 +126,3 @@ plot(golan, breaks = "equal", col = terrain.colors(11))
 plot(golan_asp, breaks = "equal", col = hcl.colors(11, "Spectral"))
 plot(golan_ci, breaks = "equal", col = hcl.colors(11, "Spectral"))
 ```
-
-
-
-
-
-

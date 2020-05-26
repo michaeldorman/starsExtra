@@ -53,7 +53,6 @@
 #' }
 #' @export
 
-# Function to calculate 'flowlength' matrix
 flowlength = function(elev, veg) {
 
   # Checks

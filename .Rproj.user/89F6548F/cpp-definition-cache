@@ -42,7 +42,22 @@
             }
         ],
         "file" : "/home/michael/Dropbox/Packages/starsExtra/src/focal2.c",
-        "file_last_write" : 1586440666.000000
+        "file_last_write" : 1590242439.000000
+    },
+    {
+        "definitions" : [
+            {
+                "column" : 6,
+                "file" : "/home/michael/Dropbox/Packages/starsExtra/src/slope.c",
+                "kind" : 6,
+                "line" : 4,
+                "name" : "slope_c(double *, int *, int *, int *, double *, double *, double *, double *)",
+                "parent_name" : "",
+                "usr" : "c:@F@slope_c#*d#*I#S1_#S1_#S0_#S0_#S0_#S0_#"
+            }
+        ],
+        "file" : "/home/michael/Dropbox/Packages/starsExtra/src/slope.c",
+        "file_last_write" : 1590514792.000000
     },
     {
         "definitions" : [
@@ -50,13 +65,13 @@
                 "column" : 6,
                 "file" : "/home/michael/Dropbox/Packages/starsExtra/src/starsExtra_init.c",
                 "kind" : 6,
-                "line" : 16,
+                "line" : 18,
                 "name" : "R_init_starsExtra(DllInfo *)",
                 "parent_name" : "",
                 "usr" : "c:@F@R_init_starsExtra#*$@S@_DllInfo#"
             }
         ],
         "file" : "/home/michael/Dropbox/Packages/starsExtra/src/starsExtra_init.c",
-        "file_last_write" : 1586441182.000000
+        "file_last_write" : 1590514664.000000
     }
 ]
