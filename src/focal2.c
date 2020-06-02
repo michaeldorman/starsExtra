@@ -61,14 +61,21 @@ void focal2_c(
                         case 4: current = current / weights[q]; break;
                     }
 
-                    // Update mean / sum
-                    if(*fun == 1 || *fun == 2) { dat = dat + current; }
-                    
-                    // Update minimum / maximum
-                    if(*fun == 3 && min_value == *na_flag) { min_value = current; }
-                    if(*fun == 3 && min_value != *na_flag && current < min_value) { min_value = current; }
-                    if(*fun == 4 && max_value == *na_flag) { max_value = current; }
-                    if(*fun == 4 && max_value != *na_flag && current > max_value) { max_value = current; }
+                    // Update mean / sum / minimum / maximum
+                    switch(*fun) {
+                        case 1: 
+                            dat = dat + current; break;
+                        case 2: 
+                            dat = dat + current; break;
+                        case 3: 
+                            if(min_value == *na_flag) { min_value = current; }
+                            if(min_value != *na_flag && current < min_value) { min_value = current; }
+                            break;
+                        case 4: 
+                            if(max_value == *na_flag) { max_value = current; }
+                            if(max_value != *na_flag && current > max_value) { max_value = current; }
+                            break;
+                    }
                     
                 }
             

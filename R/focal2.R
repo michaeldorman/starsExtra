@@ -42,6 +42,7 @@ focal2 = function(x, w, fun = "mean", weight_fun = "*", na.rm = FALSE, mask = FA
   stopifnot(is(w, "matrix"))
   if(any(is.na(w))) { stop("weight matrix 'w' includes 'NA's") }
   if(!nrow(w) == ncol(w)) { stop("weight matrix is not rectangular") }
+  stopifnot(is.character(fun))
   stopifnot(fun %in% c("mean", "sum", "min", "max"))
   stopifnot(weight_fun %in% c("+", "-", "*", "/"))
 
