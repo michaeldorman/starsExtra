@@ -57,11 +57,9 @@ flowlength = function(elev, veg) {
 
   # Checks
   elev = check_one_attribute(elev)
-  elev = check_spatial_dimensions(elev)
-  elev = check_one_layer(elev)
+  elev = check_2d(elev)
   veg = check_one_attribute(veg)
-  veg = check_spatial_dimensions(veg)
-  veg = check_one_layer(veg)
+  veg = check_2d(veg)
   stopifnot(all.equal(st_dimensions(elev), st_dimensions(veg)))
 
   # Check and set resolution

@@ -17,7 +17,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  dpi = 50
 )
 ```
 
@@ -29,6 +30,7 @@ R package `starsExtra` provides several miscellaneous functions for working with
 * Detrending of Digital Elevation Models
 * Calculating flow length
 * Calculating the Convergence Index
+* Calculating topographic slope
 * Calculating topographic aspect
 
 ## Installation

@@ -37,8 +37,7 @@ focal2 = function(x, w, fun = "mean", weight_fun = "*", na.rm = FALSE, mask = FA
 
   # Checks
   x = check_one_attribute(x)
-  x = check_spatial_dimensions(x)
-  x = check_one_layer(x)
+  x = check_2d(x)
   stopifnot(is(w, "matrix"))
   if(any(is.na(w))) { stop("weight matrix 'w' includes 'NA's") }
   if(!nrow(w) == ncol(w)) { stop("weight matrix is not rectangular") }

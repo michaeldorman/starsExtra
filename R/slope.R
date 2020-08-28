@@ -34,8 +34,7 @@ slope = function(x, na_flag = -9999) {
 
   # Checks
   x = check_one_attribute(x)
-  x = check_spatial_dimensions(x)
-  x = check_one_layer(x)
+  x = check_2d(x)
 
   # Make template
   template = x

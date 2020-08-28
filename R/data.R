@@ -31,4 +31,15 @@
 
 "golan"
 
+#' RGB image of Mount Carmel
+#'
+#' A \code{stars} object representing an RGB image of part of Mount Carmel, at 30m resolution. The data source is Landsat-8 Surface Reflectance product.
+#'
+#' @format A \code{stars} object with 1 attribute:
+#' \describe{
+#'   \item{refl}{Reflectance, numeric value between 0 and 1}
+#' }
+
+"landsat"
+
 

@@ -18,8 +18,7 @@ layer_to_matrix = function(x, check = TRUE) {
   # Checks
   if(check) {
     x = check_one_attribute(x)
-    x = check_spatial_dimensions(x)
-    x = check_one_layer(x)
+    x = check_2d(x)
   }
 
   # To matrix

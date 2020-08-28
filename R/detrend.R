@@ -38,8 +38,8 @@
 detrend = function(x, parallel = 1) {
 
   # Checks
-  stopifnot(length(dim(x)) == 2)    # Two-dimensional
-  stopifnot(length(names(x)) == 1)  # Single attribute
+  x = check_one_attribute(x)
+  x = check_2d(x)
   names(x) = "z"
 
   # To 'data.frame'

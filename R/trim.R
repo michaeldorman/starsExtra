@@ -17,7 +17,7 @@ trim = function(x) {
 
   # Checks
   x = check_one_attribute(x)
-  x = check_one_layer(x)
+  x = check_2d(x)
 
   # Calculate rows/columns to retain
   dim1 = apply(x[[1]], 1, function(x) !all(is.na(x)))

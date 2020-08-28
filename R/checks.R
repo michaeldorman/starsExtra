@@ -10,23 +10,35 @@ check_one_attribute = function(x) {
   return(x[1])
 }
 
-# Check that raster 'x' has one layer, if not: subset first 
-check_one_layer = function(x) {
+# Normalize to get 2D raster
+check_2d = function(x) {
   d = length(dim(x))
-  if(d > 3) stop("Objects with >3 dimensions are not supported")
+  if(!d %in% 2:3) stop("Only objects with 2-3 dimensions are supported")
+  xy_dim = attr(st_dimensions(x), "raster")$dimensions
+  all_dim = names(dim(x))
   if(d == 3) {
+    x = x[, , 1, drop = TRUE]
     warning("Only first layer used!")
-    return(x[, , 1])
+    non_xy_dim = setdiff(all_dim, xy_dim)
+    x = aperm(x, match(c(xy_dim, non_xy_dim), all_dim))
+    x = st_set_dimensions(x, names = c("x", "y", non_xy_dim))
+    return(x)
   }
-  if(d == 2) return(x)
+  if(d == 2) {
+    x = aperm(x, match(xy_dim, all_dim))
+    x = st_set_dimensions(x, names = c("x", "y"))
+    return(x)
+  }
 }
 
-# Check that raster 'x' has one spatial attributes as 1 and 2, if not: rearrange 
-check_spatial_dimensions = function(x) {
-  d = attr(st_dimensions(x), "raster")$dimensions
-  if(length(d) != 2) stop("Rasters with number of spatial dimensions other than two are not supported")
-  x = aperm(x, d)
+# Normalize to get 3D raster
+check_3d = function(x) {
+  d = length(dim(x))
+  if(d != 3) stop("Only objects with 3 dimensions are supported")
+  xy_dim = attr(st_dimensions(x), "raster")$dimensions
+  all_dim = names(dim(x))
+  non_xy_dim = setdiff(all_dim, xy_dim)
+  x = aperm(x, match(c(xy_dim, non_xy_dim), all_dim))
+  x = st_set_dimensions(x, names = c("x", "y", non_xy_dim))
   return(x)
 }
-
-

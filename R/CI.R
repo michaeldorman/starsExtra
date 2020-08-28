@@ -36,6 +36,10 @@
 # Apply focal filter
 CI = function(x, k, na.rm = FALSE, na_flag = -9999) {
 
+  # Checks
+  x = check_one_attribute(x)
+  x = check_2d(x)
+
   # Check odd 'k'
   check_odd_k(k)
 

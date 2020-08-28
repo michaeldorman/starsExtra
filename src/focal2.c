@@ -64,9 +64,11 @@ void focal2_c(
                     // Update mean / sum / minimum / maximum
                     switch(*fun) {
                         case 1: 
-                            dat = dat + current; break;
+                            dat = dat + current; 
+                            break;
                         case 2: 
-                            dat = dat + current; break;
+                            dat = dat + current; 
+                            break;
                         case 3: 
                             if(min_value == *na_flag) { min_value = current; }
                             if(min_value != *na_flag && current < min_value) { min_value = current; }
@@ -85,9 +87,9 @@ void focal2_c(
             if(ksize_valid > 0) {
                 switch(*fun) {
                     case 1: output[index] = dat / ksize_valid; break;
-                    case 2: output[index] = dat; break;
-                    case 3: output[index] = min_value; break;
-                    case 4: output[index] = max_value; break;
+                    case 2: output[index] = dat;               break;
+                    case 3: output[index] = min_value;         break;
+                    case 4: output[index] = max_value;         break;
                 }
             }
 
