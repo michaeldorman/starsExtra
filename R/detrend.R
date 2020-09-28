@@ -60,9 +60,9 @@ detrend = function(x, parallel = 1) {
   # Rasterize "residuals" and "trend"
   dat$resid = dat$z - dat$pred
   trend = st_as_sf(dat[, c("x", "y", "pred")], coords = c("x", "y"))
-  trend = stars::st_rasterize(trend, x)
+  trend = st_rasterize(trend, x)
   resid = st_as_sf(dat[, c("x", "y", "resid")], coords = c("x", "y"))
-  resid = stars::st_rasterize(resid, x)
+  resid = st_rasterize(resid, x)
 
   # Combine and rearrange
   result = c(resid, trend, along = 3)

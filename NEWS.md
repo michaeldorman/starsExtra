@@ -18,14 +18,19 @@
 * Replaced 'if' with 'switch' in C code
 * Added 'slope' function
 
-# starsExtra 0.1.2
+# starsExtra 0.1.2 (2020-08-31)
 
 * Added multi-band sample data ('landsat')
 * Added 'st_normalize_2d' and 'st_normalize_3d' functions
 
+# starsExtra 0.1.3
+
+* 'trim' renamed to 'trim2' & now also works on multi-band rasters
+* Added 'extract2' function
+
 # To do
 
-* Adapt 'trim' to multi-band rasters
+* Add tests for 'extract2'
 * 3-band raster to 1-band RGB hex
 * Parallel processing in 'CI' function
 * Add 'extract' function (exactextractr?)

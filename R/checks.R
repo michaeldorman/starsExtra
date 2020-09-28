@@ -10,7 +10,7 @@ check_one_attribute = function(x) {
   return(x[1])
 }
 
-# Normalize to get 2D raster
+# Normalize to get 2D raster (with just 1st layer if input is 3D)
 check_2d = function(x) {
   d = length(dim(x))
   if(!d %in% 2:3) stop("Only objects with 2-3 dimensions are supported")
@@ -41,4 +41,12 @@ check_3d = function(x) {
   x = aperm(x, match(c(xy_dim, non_xy_dim), all_dim))
   x = st_set_dimensions(x, names = c("x", "y", non_xy_dim))
   return(x)
+}
+
+# Normalize to get 2D or 3D raster
+check_2d_3d = function(x) {
+  d = length(dim(x))
+  if(!d %in% 2:3) stop("Only objects with 2-3 dimensions are supported")
+  if(d == 2) return(check_2d(x))
+  if(d == 3) return(check_3d(x))
 }
