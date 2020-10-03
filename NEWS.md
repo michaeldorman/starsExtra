@@ -23,14 +23,18 @@
 * Added multi-band sample data ('landsat')
 * Added 'st_normalize_2d' and 'st_normalize_3d' functions
 
-# starsExtra 0.1.3
+# starsExtra 0.2.0
 
 * 'trim' renamed to 'trim2' & now also works on multi-band rasters
 * Added 'extract2' function
+* Added 'make_grid' function
+* Added 'dist_to_nearest' function
+* Added tests for 'extract2'
+* Added 'pkgdown' site
 
 # To do
 
-* Add tests for 'extract2'
+* Make consistent argument names 'x' and 'v' (raster and vector, respectively)
 * 3-band raster to 1-band RGB hex
 * Parallel processing in 'CI' function
-* Add 'extract' function (exactextractr?)
+* Improve 'extract2' function (exactextractr?)

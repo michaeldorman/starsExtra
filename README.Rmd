@@ -50,6 +50,10 @@ Once installed, the library can be loaded as follows.
 library(starsExtra)
 ```
 
+## Documentation
+
+The complete documentation can be found at [https://michaeldorman.github.io/starsExtra/](https://michaeldorman.github.io/starsExtra/).
+
 ## Example
 
 The following code applied a 15\*15 mean focal filter on a 533\*627 `stars` Digital Elevation Model (DEM):
@@ -105,4 +109,9 @@ res
 
 ```{r focal-timing}
 boxplot(res)
+```
+
+```{r, include=FALSE}
+x = list.files(pattern = "^README-.*\\.png$")
+file.copy(x, "docs/", overwrite = TRUE)
 ```
