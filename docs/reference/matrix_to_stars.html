@@ -155,7 +155,7 @@
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>volcano</span><span class='op'>)</span>
 <span class='va'>r</span> <span class='op'>=</span> <span class='fu'>matrix_to_stars</span><span class='op'>(</span><span class='va'>volcano</span>, res <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/pkg/raster/man/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>r</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in if (useRaster) {    if (check_irregular(x, y))         stop(gettextf("%s can only be used with a regular grid",             sQuote("useRaster = TRUE")), domain = NA)    if (!is.character(col)) {        col &lt;- as.integer(col)        if (any(!is.na(col) &amp; col &lt; 0L))             stop("integer colors must be non-negative")        col[col &lt; 1L] &lt;- NA_integer_        p &lt;- palette()        col &lt;- p[((col - 1L)%%length(p)) + 1L]    }    zc &lt;- col[zi + 1L]    dim(zc) &lt;- dim(z)    zc &lt;- t(zc)[ncol(zc):1L, , drop = FALSE]    rasterImage(as.raster(zc), min(x), min(y), max(x), max(y),         interpolate = FALSE)} else .External.graphics(C_image, x, y, zi, col): missing value where TRUE/FALSE needed</span></div><div class='img'><img src='matrix_to_stars-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='matrix_to_stars-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
