@@ -33,23 +33,24 @@ pol = st_sample(pol, 5)
 pol = st_buffer(pol, 100)
 pol = c(pol, pol)
 
+# Plot
+plot(landsat[,,,1,drop=TRUE], reset = FALSE)
+plot(pol, add = TRUE)
+
 # Single-band raster
-aggregate(landsat[,,,1,drop=TRUE], pol, mean, na.rm = TRUE)[[1]]
-extract2(landsat[,,,1,drop=TRUE], pol, mean, na.rm = TRUE)
+aggregate(landsat[,,,1,drop=TRUE], pol, mean, na.rm = TRUE)[[1]]  ## Duplicated areas get 'NA'
+extract2(landsat[,,,1,drop=TRUE], pol, mean, na.rm = TRUE, progress = FALSE)
 
 # Multi-band example
-aggregate(landsat, pol, mean, na.rm = TRUE)[[1]]
-extract2(landsat, pol, mean, na.rm = TRUE)
+extract2(landsat, pol, mean, na.rm = TRUE, progress = FALSE)
 
 # Lines
 lines = st_cast(pol, "LINESTRING")
 
 # Single-band raster
-aggregate(landsat[,,,1,drop=TRUE], lines, mean, na.rm = TRUE)[[1]]
-extract2(landsat[,,,1,drop=TRUE], lines, mean, na.rm = TRUE)
+extract2(landsat[,,,1,drop=TRUE], lines, mean, na.rm = TRUE, progress = FALSE)
 
 # Multi-band example
-aggregate(landsat, lines, mean, na.rm = TRUE)[[1]]
-extract2(landsat, lines, mean, na.rm = TRUE)
+extract2(landsat, lines, mean, na.rm = TRUE, progress = FALSE)
 
 }

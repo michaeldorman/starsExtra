@@ -4,6 +4,7 @@
 #'
 #' @param x A \code{stars} layer, used as a "grid" for distance calculations
 #' @param v An \code{sf}, \code{sfc} or \code{sfg} object
+#' @param progress Display progress bar? The default is \code{TRUE}
 #'
 #' @return A \code{stars} raster with distances to nearest feature
 #' @export
@@ -18,13 +19,13 @@
 #' 
 #' # Make grid
 #' r = make_grid(x, res = 0.1, buffer = 0.5)
-#' d = dist_to_nearest(r, x)
+#' d = dist_to_nearest(r, x, progress = FALSE)
 #' 
 #' # Plot
 #' plot(d, breaks = "equal", axes = TRUE, reset = FALSE)
 #' plot(st_geometry(x), add = TRUE, pch = 4, cex = 3)
 
-dist_to_nearest = function(x, v) {
+dist_to_nearest = function(x, v, progress = TRUE) {
 
   # Checks
   stopifnot(inherits(v, "sfg") | inherits(v, "sfc") | inherits(v, "sf"))
@@ -36,7 +37,7 @@ dist_to_nearest = function(x, v) {
 
   # Calculate distances
   pnt = st_as_sf(x, as_points = TRUE)
-  d = nngeo::st_nn(pnt, v, k = 1, returnDist = TRUE)
+  d = nngeo::st_nn(pnt, v, k = 1, returnDist = TRUE, progress = progress)
   d = d$dist
   d = unlist(d)
   pnt$d = d

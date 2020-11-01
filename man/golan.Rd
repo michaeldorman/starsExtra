@@ -3,7 +3,7 @@
 \docType{data}
 \name{golan}
 \alias{golan}
-\title{Digital Elevation Model of Mount Carmel}
+\title{Digital Elevation Model of Golan Heights}
 \format{
 A \code{stars} object with 1 attribute:
 \describe{
@@ -15,5 +15,8 @@ golan
 }
 \description{
 A \code{stars} object representing a Digital Elevation Model (DEM) Digital Elevation Model of part of the Golan Heights and Lake Kinneret, at 90m resolution
+}
+\examples{
+plot(golan, breaks = "equal", col = terrain.colors(11))
 }
 \keyword{datasets}

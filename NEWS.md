@@ -31,9 +31,11 @@
 * Added 'dist_to_nearest' function
 * Added tests for 'extract2'
 * Added 'pkgdown' site
+* Added 'progress' option to 'flowlength' and 'dist_to_nearest'
 
 # To do
 
+* Function to convert factor 'stars' to numeric
 * Make consistent argument names 'x' and 'v' (raster and vector, respectively)
 * 3-band raster to 1-band RGB hex
 * Parallel processing in 'CI' function

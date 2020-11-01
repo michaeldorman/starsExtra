@@ -23,17 +23,27 @@ Aspect calculation results in \code{NA} when at least one of the cell neighbors 
 \examples{
 # Small example
 data(dem)
-aspect = aspect(dem)
-r = c(dem, round(aspect, 1), along = 3)
-r = st_set_dimensions(r, 3, values = c("input", "aspect"))
-plot(r, text_values = TRUE, breaks = "equal", col = hcl.colors(11, "Spectral"))
+dem_aspect = aspect(dem)
+plot(
+  dem, text_values = TRUE, breaks = "equal", 
+  col = hcl.colors(11, "Spectral"), main = "input (elevation)"
+)
+plot(
+  dem_aspect, text_values = TRUE, breaks = "equal", 
+  col = hcl.colors(11, "Spectral"), main = "output (aspect)"
+)
 \donttest{
 # Larger example
 data(carmel)
 carmel_aspect = aspect(carmel)
-r = c(carmel, round(carmel_aspect, 1), along = 3)
-r = st_set_dimensions(r, 3, values = c("input", "aspect"))
-plot(r, breaks = "equal", col = hcl.colors(11, "Spectral"))
+plot(
+  carmel, breaks = "equal", 
+  col = hcl.colors(11, "Spectral"), main = "input (elevation)"
+)
+plot(
+  carmel_aspect, breaks = "equal", 
+  col = hcl.colors(11, "Spectral"), main = "output (aspect)"
+)
 }
 
 }

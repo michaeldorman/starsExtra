@@ -11,6 +11,7 @@ Miscellaneous functions for working with 'stars' objects, mainly single-band ras
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://michaeldorman.github.io/starsExtra/}
   \item \url{https://github.com/michaeldorman/starsExtra/}
   \item Report bugs at \url{https://github.com/michaeldorman/starsExtra/issues/}
 }

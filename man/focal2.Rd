@@ -43,15 +43,15 @@ The raster is "padded" with \code{(nrow(w)-1)/2} more rows and columns of \code{
 data(dem)
 dem_mean3 = focal2(dem, matrix(1, 3, 3), "mean")
 r = c(dem, round(dem_mean3, 1), along = 3)
-r = st_set_dimensions(r, 3, values = c("input", "mean (k=3)"))
-plot(r, text_values = TRUE, breaks = "equal", col = terrain.colors(10))
+r = st_set_dimensions(r, 3, values = c("input", "output (mean, k=3)"))
+plot(r, text_values = TRUE, breaks = "equal", col = terrain.colors(11))
 \donttest{
 # Larger example
 data(carmel)
 carmel_mean15 = focal2(carmel, matrix(1, 15, 15), "mean")
 r = c(carmel, carmel_mean15, along = 3)
-r = st_set_dimensions(r, 3, values = c("input", "mean (k=15)"))
-plot(r, breaks = "equal", col = terrain.colors(10))
+r = st_set_dimensions(r, 3, values = c("input", "output (mean, k=15)"))
+plot(r, breaks = "equal", col = terrain.colors(11))
 }
 
 }

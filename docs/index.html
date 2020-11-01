@@ -147,7 +147,7 @@
 <a href="#timing" class="anchor"></a>Timing</h2>
 <p>The following code section compares the calculation time of <code>focal2</code> in the above example with <code><a href="https://rdrr.io/pkg/raster/man/focal.html">raster::focal</a></code> (both using C/C++) and the reference method <code>starsExtra:::focal2r</code> (using R code only).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/">microbenchmark</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">microbenchmark</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://michaeldorman.github.io/starsExtra/">starsExtra</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster">raster</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: sp</span>
@@ -155,7 +155,7 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">carmel</span><span class="op">)</span>
 <span class="va">carmelr</span> <span class="op">=</span> <span class="fu">as</span><span class="op">(</span><span class="va">carmel</span>, <span class="st">"Raster"</span><span class="op">)</span>
 
-<span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
+<span class="va">res</span> <span class="op">=</span> <span class="fu">microbenchmark</span><span class="op">(</span>
   focal2 <span class="op">=</span> <span class="fu"><a href="reference/focal2.html">focal2</a></span><span class="op">(</span><span class="va">carmel</span>, w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span>, <span class="fl">15</span><span class="op">)</span>, fun <span class="op">=</span> <span class="st">"mean"</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, 
   focal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/focal.html">focal</a></span><span class="op">(</span><span class="va">carmelr</span>, w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span>, <span class="fl">15</span><span class="op">)</span>, fun <span class="op">=</span> <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
   focal2r <span class="op">=</span> <span class="fu">starsExtra</span><span class="fu">:::</span><span class="fu">focal2r</span><span class="op">(</span><span class="va">carmel</span>, k <span class="op">=</span> <span class="fl">15</span>, <span class="va">mean</span><span class="op">)</span>,

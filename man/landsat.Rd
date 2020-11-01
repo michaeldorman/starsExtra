@@ -16,4 +16,7 @@ landsat
 \description{
 A \code{stars} object representing an RGB image of part of Mount Carmel, at 30m resolution. The data source is Landsat-8 Surface Reflectance product.
 }
+\examples{
+plot(landsat, breaks = "equal")
+}
 \keyword{datasets}

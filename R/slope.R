@@ -15,17 +15,27 @@
 #' @examples
 #' # Small example
 #' data(dem)
-#' slope = slope(dem)
-#' r = c(dem, round(slope, 1), along = 3)
-#' r = st_set_dimensions(r, 3, values = c("input", "slope"))
-#' plot(r, text_values = TRUE, breaks = "equal", col = hcl.colors(11, "Spectral"))
+#' dem_slope = slope(dem)
+#' plot(
+#'   dem, text_values = TRUE, breaks = "equal", 
+#'   col = hcl.colors(11, "Spectral"), main = "input (elevation)"
+#' )
 #' \donttest{
+#' plot(
+#'   dem_slope, text_values = TRUE, breaks = "equal", 
+#'   col = hcl.colors(11, "Spectral"), main = "output (slope)"
+#' )
 #' # Larger example
 #' data(carmel)
 #' carmel_slope = slope(carmel)
-#' r = c(carmel, round(carmel_slope, 1), along = 3)
-#' r = st_set_dimensions(r, 3, values = c("input", "slope"))
-#' plot(r, breaks = "equal", col = hcl.colors(11, "Spectral"))
+#' plot(
+#'   carmel, breaks = "equal", 
+#'   col = hcl.colors(11, "Spectral"), main = "input (elevation)"
+#' )
+#' plot(
+#'   carmel_slope, breaks = "equal", 
+#'   col = hcl.colors(11, "Spectral"), main = "output (slope)"
+#' )
 #' }
 #'
 #' @export

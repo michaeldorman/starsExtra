@@ -16,4 +16,7 @@ carmel
 \description{
 A \code{stars} object representing a Digital Elevation Model (DEM) Digital Elevation Model of Mount Carmel, at 90m resolution
 }
+\examples{
+plot(carmel, breaks = "equal", col = terrain.colors(11))
+}
 \keyword{datasets}

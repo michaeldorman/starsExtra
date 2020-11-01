@@ -4,12 +4,14 @@
 \alias{flowlength}
 \title{Calculate flow length}
 \usage{
-flowlength(elev, veg)
+flowlength(elev, veg, progress = TRUE)
 }
 \arguments{
 \item{elev}{A numeric \code{stars} raster representing a Digital Elevation Model (DEM).}
 
 \item{veg}{A matching logical \code{stars} raster representing vegetation presence. \code{TRUE} values represent vegetated cells where flow is absorbed (i.e. sinks), \code{FALSE} values represent cells where flow is unobstructed.}
+
+\item{progress}{Display progress bar? The default is \code{TRUE}}
 }
 \value{
 A numeric \code{stars} raster where each cell value is flow length, in resolution units.
@@ -42,20 +44,29 @@ elev = matrix_to_stars(elev)
 veg = matrix_to_stars(veg)
 
 # Calculate flow length
-fl = flowlength(elev, veg)
+fl = flowlength(elev, veg, progress = FALSE)
 
 # Plot
-plot(round(elev, 1), text_values = TRUE, breaks = "equal", col = terrain.colors(6))
-plot(veg*1, text_values = TRUE, breaks = "equal", col = rev(terrain.colors(2)))
-plot(round(fl, 1), text_values = TRUE, breaks = "equal", col = terrain.colors(6))
+plot(
+  round(elev, 1), text_values = TRUE, breaks = "equal", 
+  col = terrain.colors(6), main = "input (elevation)"
+)
+plot(
+  veg*1, text_values = TRUE, breaks = "equal", 
+  col = rev(terrain.colors(2)), main = "input (vegetation)"
+)
+plot(
+  round(fl, 1), text_values = TRUE, breaks = "equal", 
+  col = terrain.colors(6), main = "output (flowlength)"
+)
 \donttest{
 # Larger example
 data(carmel)
 elev = carmel
 elev[is.na(elev)] = 0
 veg = elev > 100
-fl = flowlength(elev, veg)
-plot(fl)
+fl = flowlength(elev, veg, progress = FALSE)
+plot(fl, breaks = "equal", col = hcl.colors(11), main = "flowlength (m)")
 }
 }
 \references{

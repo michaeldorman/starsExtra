@@ -31,14 +31,15 @@ data(dem)
 dem_asp = aspect(dem)
 dem_ci = CI(dem_asp, k = 3)
 r = c(dem, round(dem_ci, 1), along = 3)
-r = st_set_dimensions(r, 3, values = c("input", "CI (k=3)"))
-plot(r, text_values = TRUE, breaks = "equal", col = terrain.colors(10))
+r = st_set_dimensions(r, 3, values = c("input (aspect)", "output (CI, k=3)"))
+plot(r, text_values = TRUE, breaks = "equal", col = terrain.colors(10), mfrow = c(1, 2))
 \donttest{
 # Larger example
 data(golan)
 golan_asp = aspect(golan)
 golan_ci = CI(golan_asp, k = 25)
-plot(golan_ci)
+plot(golan_asp, breaks = "equal", col = hcl.colors(11, "Spectral"), main = "input (aspect)")
+plot(golan_ci, breaks = "equal", col = hcl.colors(11, "Spectral"), main = "output (CI, k=25)")
 }
 
 }

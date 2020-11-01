@@ -4,6 +4,7 @@
 #'
 #' @param	elev	A numeric \code{stars} raster representing a Digital Elevation Model (DEM).
 #' @param	veg	A matching logical \code{stars} raster representing vegetation presence. \code{TRUE} values represent vegetated cells where flow is absorbed (i.e. sinks), \code{FALSE} values represent cells where flow is unobstructed.
+#' @param progress Display progress bar? The default is \code{TRUE}
 #' @return	A numeric \code{stars} raster where each cell value is flow length, in resolution units.
 #'
 #' @references
@@ -36,24 +37,33 @@
 #' veg = matrix_to_stars(veg)
 #'
 #' # Calculate flow length
-#' fl = flowlength(elev, veg)
+#' fl = flowlength(elev, veg, progress = FALSE)
 #'
 #' # Plot
-#' plot(round(elev, 1), text_values = TRUE, breaks = "equal", col = terrain.colors(6))
-#' plot(veg*1, text_values = TRUE, breaks = "equal", col = rev(terrain.colors(2)))
-#' plot(round(fl, 1), text_values = TRUE, breaks = "equal", col = terrain.colors(6))
+#' plot(
+#'   round(elev, 1), text_values = TRUE, breaks = "equal", 
+#'   col = terrain.colors(6), main = "input (elevation)"
+#' )
+#' plot(
+#'   veg*1, text_values = TRUE, breaks = "equal", 
+#'   col = rev(terrain.colors(2)), main = "input (vegetation)"
+#' )
+#' plot(
+#'   round(fl, 1), text_values = TRUE, breaks = "equal", 
+#'   col = terrain.colors(6), main = "output (flowlength)"
+#' )
 #' \donttest{
 #' # Larger example
 #' data(carmel)
 #' elev = carmel
 #' elev[is.na(elev)] = 0
 #' veg = elev > 100
-#' fl = flowlength(elev, veg)
-#' plot(fl)
+#' fl = flowlength(elev, veg, progress = FALSE)
+#' plot(fl, breaks = "equal", col = hcl.colors(11), main = "flowlength (m)")
 #' }
 #' @export
 
-flowlength = function(elev, veg) {
+flowlength = function(elev, veg, progress = TRUE) {
 
   # Checks
   elev = check_one_attribute(elev)
@@ -80,14 +90,14 @@ flowlength = function(elev, veg) {
   veg = matrix_extend(veg, n = 1, fill = TRUE)
 
   # Progress bar
-  pb = utils::txtProgressBar(min = 2, max = nrow(elev)-1, style = 3)
+  if(progress) pb = utils::txtProgressBar(min = 2, max = nrow(elev)-1, style = 3)
 
   # Calculate 'flowlength' matrix
   result = matrix(NA, nrow = nrow(elev), ncol = ncol(elev))
   for(i in 2:(nrow(elev)-1)) {
     for(j in 2:(ncol(elev)-1)) {
       result[i, j] = flowlength1(elev, veg, c(i, j), res)
-      utils::setTxtProgressBar(pb, i)
+      if(progress) utils::setTxtProgressBar(pb, i)
     }
   }
 
@@ -98,7 +108,7 @@ flowlength = function(elev, veg) {
   template[[1]] = t(result)
 
   # Return
-  cat("\n")
+  if(progress) cat("\n")
   return(template)
 
 }

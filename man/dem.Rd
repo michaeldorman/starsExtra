@@ -16,4 +16,7 @@ dem
 \description{
 A \code{stars} object representing a small 13*11 Digital Elevation Model (DEM), at 90m resolution
 }
+\examples{
+plot(dem, text_values = TRUE, breaks = "equal", col = terrain.colors(11))
+}
 \keyword{datasets}

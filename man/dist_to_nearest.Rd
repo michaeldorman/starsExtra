@@ -4,12 +4,14 @@
 \alias{dist_to_nearest}
 \title{Calculate raster of distances to nearest feature}
 \usage{
-dist_to_nearest(x, v)
+dist_to_nearest(x, v, progress = TRUE)
 }
 \arguments{
 \item{x}{A \code{stars} layer, used as a "grid" for distance calculations}
 
 \item{v}{An \code{sf}, \code{sfc} or \code{sfg} object}
+
+\item{progress}{Display progress bar? The default is \code{TRUE}}
 }
 \value{
 A \code{stars} raster with distances to nearest feature
@@ -27,7 +29,7 @@ x = st_buffer(x, 0.5)
 
 # Make grid
 r = make_grid(x, res = 0.1, buffer = 0.5)
-d = dist_to_nearest(r, x)
+d = dist_to_nearest(r, x, progress = FALSE)
 
 # Plot
 plot(d, breaks = "equal", axes = TRUE, reset = FALSE)
