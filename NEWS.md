@@ -23,7 +23,7 @@
 * Added multi-band sample data ('landsat')
 * Added 'st_normalize_2d' and 'st_normalize_3d' functions
 
-# starsExtra 0.2.0
+# starsExtra 0.2.0 (2020-11-01)
 
 * 'trim' renamed to 'trim2' & now also works on multi-band rasters
 * Added 'extract2' function
@@ -33,8 +33,14 @@
 * Added 'pkgdown' site
 * Added 'progress' option to 'flowlength' and 'dist_to_nearest'
 
+# starsExtra 0.2.2
+
+* Added 'mode_value' function
+* Added "mode" option in 'focal2'
+
 # To do
 
+* Add five options for dealing with ties in 'focal2'/"mode" (first, last, min, max, random)
 * Function to convert factor 'stars' to numeric
 * Make consistent argument names 'x' and 'v' (raster and vector, respectively)
 * 3-band raster to 1-band RGB hex

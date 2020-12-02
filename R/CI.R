@@ -40,9 +40,11 @@ CI = function(x, k, na.rm = FALSE, na_flag = -9999) {
   # Checks
   x = check_one_attribute(x)
   x = check_2d(x)
-
-  # Check odd 'k'
+  stopifnot(is.numeric(k))
+  stopifnot(length(k) == 1)
   check_odd_k(k)
+  stopifnot(is.numeric(na_flag))
+  stopifnot(length(na_flag) == 1)
 
   # Set units to 'NA'
   if(class(x[[1]]) == "units") x[[1]] = units::drop_units(x[[1]])
@@ -114,9 +116,4 @@ CI = function(x, k, na.rm = FALSE, na_flag = -9999) {
   return(template)
 
 }
-
-
-
-
-
 

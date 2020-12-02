@@ -1,28 +1,32 @@
 #define R_NO_REMAP
 
+void mean_c(double *input, int *n, double *na_flag, double *output);
+void sum_c(double *input, int *n, double *na_flag, double *output);
+void min_c(double *input, int *n, double *na_flag, double *output);
+void max_c(double *input, int *n, double *na_flag, double *output);
+void mode_c(double *input, int *n, double *na_flag, double *output);
+
 void focal2_c(
-    double *input, 
-    int *nrows, 
-    int *ncols, 
-    double *weights, 
-    int *steps, 
-    int *kindex, 
-    int *na_rm, 
-    double *na_flag, 
-    int *fun,
-    int *weight_fun,
-    double *output
+    double *input,    // Values of input raster
+    int *nrows,       // 'nrow' of input raster
+    int *ncols,       // 'nrow' of input raster
+    double *weights,  // Values of weight matrix 'w'
+    double *dat,      // Values of current neighborhood
+    int *steps,       // Number of extra lines around raster borders '(nrow(w) - 1) / 2
+    int *kindex,      // Vector of index offsets of raster values by 'w'
+    int *na_rm,       // Whether to remove 'NA'
+    double *na_flag,  // 'NA' flag
+    int *fun,         // Function to summarize neighborhood
+    int *weight_fun,  // Function to apply on each value in neighborhood
+    double *output    // Values of output (filtered) raster
     ) {
     
     int ksize = (*steps * 2 + 1) * (*steps * 2 + 1);  // Size of weight matrix
-    int i, j, q;       // Counters
-    long index;        // Index of the cell to be processed
-    double current;    // Current value
-    int ksize_valid;   // Number of non-missing
-    double dat;        // Data for current neighborhood
-    int any_na;        // Flag for 'NA' in neighborhood
-    double min_value;  // Minimum value in neighborhood
-    double max_value;  // Maximum value in neighborhood
+    int i, j, q;        // Counters
+    long index;         // Index of the cell to be processed
+    double current;     // Current value
+    int ksize_valid;    // Number of non-missing
+    int any_na;         // Flag for 'NA' in neighborhood
     
     // Loop over columns
     for(i = *steps; i < *ncols - *steps; i++) {
@@ -30,12 +34,9 @@ void focal2_c(
         // Loop over rows
         for(j = *steps; j < *nrows - *steps; j++) {
             
-            dat = 0;
             ksize_valid = 0;
             index = j * *ncols + i;
             any_na = 0;
-            min_value = *na_flag;
-            max_value = *na_flag;
 
             // Loop over weights matrix
             for(q = 0; q < ksize; q++) {
@@ -45,14 +46,8 @@ void focal2_c(
                 // If current value is 'NA'
                 if(current == *na_flag) {
                     any_na = 1;
-                }
-            
-                // If current value is not 'NA'
-                if(current != *na_flag) {
-                    
-                    // Increment valid values count
+                } else {
                     ksize_valid++;
-                    
                     // Calculate *weighted* current value
                     switch(*weight_fun) {
                         case 1: current = current + weights[q]; break;
@@ -60,36 +55,21 @@ void focal2_c(
                         case 3: current = current * weights[q]; break;
                         case 4: current = current / weights[q]; break;
                     }
-
-                    // Update mean / sum / minimum / maximum
-                    switch(*fun) {
-                        case 1: 
-                            dat = dat + current; 
-                            break;
-                        case 2: 
-                            dat = dat + current; 
-                            break;
-                        case 3: 
-                            if(min_value == *na_flag) { min_value = current; }
-                            if(min_value != *na_flag && current < min_value) { min_value = current; }
-                            break;
-                        case 4: 
-                            if(max_value == *na_flag) { max_value = current; }
-                            if(max_value != *na_flag && current > max_value) { max_value = current; }
-                            break;
-                    }
-                    
                 }
             
+                // Collect weighted value
+                dat[q] = current;
+
             }
 
-            // If any non-'NA' value, calculate mean / sum / min / max
+            // If any non-'NA' value, calculate mean / sum / min / max / mode
             if(ksize_valid > 0) {
                 switch(*fun) {
-                    case 1: output[index] = dat / ksize_valid; break;
-                    case 2: output[index] = dat;               break;
-                    case 3: output[index] = min_value;         break;
-                    case 4: output[index] = max_value;         break;
+                    case 1: mean_c(dat, &ksize, na_flag, &output[index]); break;
+                    case 2: sum_c(dat, &ksize, na_flag, &output[index]); break;
+                    case 3: min_c(dat, &ksize, na_flag, &output[index]);  break;
+                    case 4: max_c(dat, &ksize, na_flag, &output[index]);  break;
+                    case 5: mode_c(dat, &ksize, na_flag, &output[index]); break;
                 }
             }
 

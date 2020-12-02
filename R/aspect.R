@@ -46,6 +46,8 @@ aspect = function(x, na_flag = -9999) {
   # Checks
   x = check_one_attribute(x)
   x = check_2d(x)
+  stopifnot(is.numeric(na_flag))
+  stopifnot(length(na_flag) == 1)
 
   # Make template
   template = x
@@ -103,9 +105,4 @@ aspect = function(x, na_flag = -9999) {
   return(template)
 
 }
-
-
-
-
-
 

@@ -4,7 +4,7 @@
 #'
 #' @param x A raster (class \code{stars}) with one attribute and two dimensions: \code{x} and \code{y}, i.e., a single-band raster.
 #' @param w Weights matrix defining the neighborhood size around the focal cell, as well as the weights. For example, \code{matrix(1,3,3)} implies a neighborhood of size 3*3 with equal weights of 1 for all cells. The matrix must be square, with an odd number of rows and columns.
-#' @param fun A function to aggregate the resulting values for each neighborhood. Possible values are: \code{"mean"}, \code{"sum"}, \code{"min"}, \code{"max"}. The default is \code{"mean"}, i.e., the resulting values per neighborhood are \emph{averaged} before being assigned to the new focal cell value.
+#' @param fun A function to aggregate the resulting values for each neighborhood. Possible values are: \code{"mean"}, \code{"sum"}, \code{"min"}, \code{"max"}, and \code{"mode"}. The default is \code{"mean"}, i.e., the resulting values per neighborhood are \emph{averaged} before being assigned to the new focal cell value.
 #' @param weight_fun An operator which is applied on each pair of values comprising the cell value and the respective weight value, as in \code{raster_value-weight}. Possible values are: \code{"+"}, \code{"-"}, \code{"*"}, \code{"/"}. The default is \code{"*"}, i.e., each cell value is \emph{multiplied} by the respective weight.
 #' @param na.rm Should \code{NA} values in the neighborhood be removed from the calculation? Default is \code{FALSE}.
 #' @param mask If \code{TRUE}, pixels with \code{NA} in the input are set to \code{NA} in the output as well, i.e., the output is "masked" using the input (default is \code{FALSE}).
@@ -42,8 +42,10 @@ focal2 = function(x, w, fun = "mean", weight_fun = "*", na.rm = FALSE, mask = FA
   if(any(is.na(w))) { stop("weight matrix 'w' includes 'NA's") }
   if(!nrow(w) == ncol(w)) { stop("weight matrix is not rectangular") }
   stopifnot(is.character(fun))
-  stopifnot(fun %in% c("mean", "sum", "min", "max"))
+  stopifnot(fun %in% c("mean", "sum", "min", "max", "mode"))
   stopifnot(weight_fun %in% c("+", "-", "*", "/"))
+  stopifnot(is.numeric(na_flag))
+  stopifnot(length(na_flag) == 1)
 
   # Make template
   template = x
@@ -75,9 +77,10 @@ focal2 = function(x, w, fun = "mean", weight_fun = "*", na.rm = FALSE, mask = FA
 
   # Encode 'fun' and 'weight_fun' to integer
   if(fun == "mean") fun = 1
-  if(fun == "sum") fun = 2
-  if(fun == "min") fun = 3
-  if(fun == "max") fun = 4
+  if(fun == "sum")  fun = 2
+  if(fun == "min")  fun = 3
+  if(fun == "max")  fun = 4
+  if(fun == "mode") fun = 5
   if(weight_fun == "+") weight_fun = 1
   if(weight_fun == "-") weight_fun = 2
   if(weight_fun == "*") weight_fun = 3
@@ -90,6 +93,7 @@ focal2 = function(x, w, fun = "mean", weight_fun = "*", na.rm = FALSE, mask = FA
     as.integer(nrows),
     as.integer(ncols),
     as.double(t(w)),
+    as.double(rep(na_flag, length(w))),
     as.integer(steps),
     as.integer(kindex),
     as.integer(na.rm),
@@ -112,9 +116,4 @@ focal2 = function(x, w, fun = "mean", weight_fun = "*", na.rm = FALSE, mask = FA
   return(template)
 
 }
-
-
-
-
-
 
