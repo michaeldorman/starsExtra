@@ -25,6 +25,7 @@ expect_equal({
 expect_equal({
   data(dem)
   dem1 = focal2(dem, matrix(1, 3, 3), "mean", na.rm = TRUE)
+  attr(dem1[[1]], "dim") = setNames(attr(dem1[[1]], "dim"), c("x", "y"))
   dem1[[1]]
 },
 structure(
@@ -37,6 +38,7 @@ structure(
 expect_equal({
   data(dem)
   dem1 = focal2(dem, matrix(1, 5, 5), "max", na.rm = FALSE)
+  attr(dem1[[1]], "dim") = setNames(attr(dem1[[1]], "dim"), c("x", "y"))
   dem1[[1]]
 },
   structure(
@@ -50,6 +52,7 @@ expect_equal({
 expect_equal({
   data(dem)
   dem1 = focal2(dem, matrix(1, 3, 3), "min", na.rm = TRUE)
+  attr(dem1[[1]], "dim") = setNames(attr(dem1[[1]], "dim"), c("x", "y"))
   dem1[[1]]
 },    
 structure(
@@ -66,6 +69,7 @@ expect_equal({
   r = st_set_dimensions(r, names = c("x", "y"))
   r = st_set_dimensions(r, "y", offset = 0, delta = -1)
   s = focal2(r, matrix(1, 3, 3), "mode", na.rm = TRUE)
+  attr(s[[1]], "dim") = setNames(attr(s[[1]], "dim"), c("x", "y"))
   s[[1]]
 },
   structure(c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1), .Dim = structure(4:3, .Names = c("x", "y")))
@@ -77,6 +81,7 @@ expect_equal({
   r = st_set_dimensions(r, names = c("x", "y"))
   r = st_set_dimensions(r, "y", offset = 0, delta = -1)
   s = focal2(r, matrix(1, 3, 3), "mode", na.rm = FALSE)
+  attr(s[[1]], "dim") = setNames(attr(s[[1]], "dim"), c("x", "y"))
   s[[1]]
 },
   structure(c(NA, NA, NA, NA, NA, 1, 1, NA, NA, NA, NA, NA), .Dim = structure(4:3, .Names = c("x", "y")))
@@ -88,8 +93,19 @@ expect_equal({
   r = st_set_dimensions(r, names = c("x", "y"))
   r = st_set_dimensions(r, "y", offset = 0, delta = -1)
   s = focal2(r, matrix(1, 5, 5), "sum", na.rm = TRUE)
+  attr(s[[1]], "dim") = setNames(attr(s[[1]], "dim"), c("x", "y"))
   s[[1]]
 },
   structure(c(10, 15, 15, 12, 10, 15, 15, 12, 10, 15, 15, 12), .Dim = structure(4:3, .Names = c("x", "y")))
 )
 
+expect_equal({
+  data(carmel)
+  carmel1 = focal2(carmel, matrix(1, 5, 5), "mean", na.rm = FALSE)
+  carmel1
+},
+{
+  data(carmel)
+  carmel2 = focal2(carmel, matrix(1/25, 5, 5), "sum", na.rm = FALSE)
+  carmel2
+})

@@ -25,7 +25,7 @@ R package `starsExtra` provides several miscellaneous functions for working with
 * Detrending of Digital Elevation Models
 * Calculating flow length
 * Calculating the Convergence Index
-* Calculating topographic aspect
+* Calculating topographic aspect and slope
 
 ## Installation
 

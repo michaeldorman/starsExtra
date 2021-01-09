@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>starsExtra: Miscellaneous Functions for Working with 'stars' Rasters — starsExtra-package • starsExtra</title>
+<title>Mode — mode_value • starsExtra</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="starsExtra: Miscellaneous Functions for Working with 'stars' Rasters — starsExtra-package" />
-<meta property="og:description" content="Miscellaneous functions for working with 'stars' objects, mainly single-band rasters. Currently includes functions for: (1) focal filtering, (2) detrending of Digital Elevation Models, (3) calculating flow length, (4) calculating the Convergence Index, (5) calculating topographic aspect and topographic slope." />
+<meta property="og:title" content="Mode — mode_value" />
+<meta property="og:description" content="Find the mode (i.e., most common value) in a numeric vector. In case of ties, the first encountered value is returned." />
 
 
 
@@ -123,30 +123,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>starsExtra: Miscellaneous Functions for Working with 'stars' Rasters</h1>
-    <small class="dont-index">Source: <a href='https://github.com/michaeldorman/starsExtra/blob/master/R/starsExtra-package.R'><code>R/starsExtra-package.R</code></a></small>
-    <div class="hidden name"><code>starsExtra-package.Rd</code></div>
+    <h1>Mode</h1>
+    <small class="dont-index">Source: <a href='https://github.com/michaeldorman/starsExtra/blob/master/R/mode.R'><code>R/mode.R</code></a></small>
+    <div class="hidden name"><code>mode_value.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Miscellaneous functions for working with 'stars' objects, mainly single-band rasters. Currently includes functions for: (1) focal filtering, (2) detrending of Digital Elevation Models, (3) calculating flow length, (4) calculating the Convergence Index, (5) calculating topographic aspect and topographic slope.</p>
+    <p>Find the mode (i.e., most common value) in a numeric vector. In case of ties, the first encountered value is returned.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>mode_value</span><span class='op'>(</span><span class='va'>x</span>, na_flag <span class='op'>=</span> <span class='op'>-</span><span class='fl'>9999</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A <code>numeric</code> or <code>logical</code> vector</p></td>
+    </tr>
+    <tr>
+      <th>na_flag</th>
+      <td><p>Value used to mark <code>NA</code> values in C code. This should be set to a value which is guaranteed to be absent from the input vector <code>x</code> (default is <code>-9999</code>).</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <div class='dont-index'><p>Useful links:</p><ul>
-<li><p><a href='https://michaeldorman.github.io/starsExtra/'>https://michaeldorman.github.io/starsExtra/</a></p></li>
-<li><p><a href='https://github.com/michaeldorman/starsExtra/'>https://github.com/michaeldorman/starsExtra/</a></p></li>
-<li><p>Report bugs at <a href='https://github.com/michaeldorman/starsExtra/issues/'>https://github.com/michaeldorman/starsExtra/issues/</a></p></li>
-</ul>
+    <p>The mode, <code>numeric</code> vector of length 1</p>
 
-</div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p><strong>Maintainer</strong>: Michael Dorman <a href='mailto:dorman@post.bgu.ac.il'>dorman@post.bgu.ac.il</a></p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>5</span>, <span class='fl'>5</span>, <span class='fl'>3</span>, <span class='fl'>10</span>, <span class='fl'>2</span>, <span class='fl'>5</span><span class='op'>)</span>
+<span class='fu'>mode_value</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

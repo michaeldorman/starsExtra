@@ -1,6 +1,7 @@
 expect_equal({
   data(dem)
   dem1 = starsExtra:::focal2r(dem, 3, mean, na.rm = TRUE)
+  attr(dem1[[1]], "dim") = setNames(attr(dem1[[1]], "dim"), c("x", "y"))
   dem1[[1]]
 },
 structure(
@@ -13,6 +14,7 @@ structure(
 expect_equal({
   data(dem)
   dem1 = starsExtra:::focal2r(dem, 5, max, na.rm = FALSE)
+  attr(dem1[[1]], "dim") = setNames(attr(dem1[[1]], "dim"), c("x", "y"))
   dem1[[1]]
 },
   structure(
@@ -26,6 +28,7 @@ expect_equal({
 expect_equal({
   data(dem)
   dem1 = starsExtra:::focal2r(dem, 3, min, na.rm = TRUE)
+  attr(dem1[[1]], "dim") = setNames(attr(dem1[[1]], "dim"), c("x", "y"))
   dem1[[1]]
 },
   structure(

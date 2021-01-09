@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">starsExtra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -65,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/michaeldorman/starsExtra/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -92,29 +92,29 @@
 <li>Detrending of Digital Elevation Models</li>
 <li>Calculating flow length</li>
 <li>Calculating the Convergence Index</li>
-<li>Calculating topographic aspect</li>
+<li>Calculating topographic aspect and slope</li>
 </ul>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>CRAN version:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"starsExtra"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"starsExtra"</span><span class="op">)</span></code></pre></div>
 <p>GitHub version:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"michaeldorman/starsExtra"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"michaeldorman/starsExtra"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>Once installed, the library can be loaded as follows.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://michaeldorman.github.io/starsExtra/">starsExtra</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://michaeldorman.github.io/starsExtra/">starsExtra</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: sf</span>
 <span class="co">#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</span>
 <span class="co">#&gt; Loading required package: stars</span>
-<span class="co">#&gt; Loading required package: abind</span></pre></div>
+<span class="co">#&gt; Loading required package: abind</span></code></pre></div>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
@@ -125,29 +125,29 @@
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>The following code applied a 15*15 mean focal filter on a 533*627 <code>stars</code> Digital Elevation Model (DEM):</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">carmel</span><span class="op">)</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">carmel</span><span class="op">)</span>
 <span class="va">carmel_mean15</span> <span class="op">=</span> <span class="fu"><a href="reference/focal2.html">focal2</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">carmel</span>,             <span class="co"># Input 'stars' raster</span>
   w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span>, <span class="fl">15</span><span class="op">)</span>,  <span class="co"># Weights</span>
   fun <span class="op">=</span> <span class="st">"mean"</span>,           <span class="co"># Aggregation function</span>
   na.rm <span class="op">=</span> <span class="cn">TRUE</span>,           <span class="co"># 'NA' in neighborhood are removed</span>
   mask <span class="op">=</span> <span class="cn">TRUE</span>             <span class="co"># Areas that were 'NA' in 'x' are masked from result</span>
-<span class="op">)</span></pre></div>
-<p>The calculation takes: 0.5631919 secs.</p>
+<span class="op">)</span></code></pre></div>
+<p>The calculation takes: 0.3050735 secs.</p>
 <p>The original DEM and the filtered DEM can be combined and plotted with the following expressions:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">r</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">carmel</span>, <span class="va">carmel_mean15</span>, along <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">r</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">carmel</span>, <span class="va">carmel_mean15</span>, along <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="va">r</span> <span class="op">=</span> <span class="fu">st_set_dimensions</span><span class="op">(</span><span class="va">r</span>, <span class="fl">3</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"input"</span>, <span class="st">"15*15 mean filter"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">r</span>, breaks <span class="op">=</span> <span class="st">"equal"</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, key.pos <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">r</span>, breaks <span class="op">=</span> <span class="st">"equal"</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, key.pos <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></code></pre></div>
 <p><img src="README-focal-example-1.png"></p>
 </div>
 <div id="timing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#timing" class="anchor"></a>Timing</h2>
 <p>The following code section compares the calculation time of <code>focal2</code> in the above example with <code><a href="https://rdrr.io/pkg/raster/man/focal.html">raster::focal</a></code> (both using C/C++) and the reference method <code>starsExtra:::focal2r</code> (using R code only).</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">microbenchmark</span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/">microbenchmark</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://michaeldorman.github.io/starsExtra/">starsExtra</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster">raster</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: sp</span>
@@ -155,7 +155,7 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">carmel</span><span class="op">)</span>
 <span class="va">carmelr</span> <span class="op">=</span> <span class="fu">as</span><span class="op">(</span><span class="va">carmel</span>, <span class="st">"Raster"</span><span class="op">)</span>
 
-<span class="va">res</span> <span class="op">=</span> <span class="fu">microbenchmark</span><span class="op">(</span>
+<span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
   focal2 <span class="op">=</span> <span class="fu"><a href="reference/focal2.html">focal2</a></span><span class="op">(</span><span class="va">carmel</span>, w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span>, <span class="fl">15</span><span class="op">)</span>, fun <span class="op">=</span> <span class="st">"mean"</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, 
   focal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/focal.html">focal</a></span><span class="op">(</span><span class="va">carmelr</span>, w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span>, <span class="fl">15</span><span class="op">)</span>, fun <span class="op">=</span> <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
   focal2r <span class="op">=</span> <span class="fu">starsExtra</span><span class="fu">:::</span><span class="fu">focal2r</span><span class="op">(</span><span class="va">carmel</span>, k <span class="op">=</span> <span class="fl">15</span>, <span class="va">mean</span><span class="op">)</span>,
@@ -164,15 +164,15 @@
 <span class="va">res</span>
 <span class="co">#&gt; Unit: milliseconds</span>
 <span class="co">#&gt;     expr        min         lq       mean     median         uq        max</span>
-<span class="co">#&gt;   focal2   490.8400   497.2334   507.1330   500.9711   505.5926   543.1901</span>
-<span class="co">#&gt;    focal   115.7206   119.2707   153.4027   121.3225   124.4334   413.7475</span>
-<span class="co">#&gt;  focal2r 14946.2629 15031.5734 15172.0134 15111.5967 15311.7349 15582.1324</span>
+<span class="co">#&gt;   focal2   262.4002   262.7809   279.7792   269.7921   276.1204   374.7612</span>
+<span class="co">#&gt;    focal   110.1638   110.3018   140.8258   112.3260   114.7384   290.3110</span>
+<span class="co">#&gt;  focal2r 14411.5980 14436.0866 14496.4930 14489.4565 14542.2283 14628.9805</span>
 <span class="co">#&gt;  neval</span>
 <span class="co">#&gt;     10</span>
 <span class="co">#&gt;     10</span>
-<span class="co">#&gt;     10</span></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></pre></div>
+<span class="co">#&gt;     10</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/raster/man/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></code></pre></div>
 <p><img src="README-focal-timing-1.png"></p>
 </div>
 </div>

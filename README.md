@@ -1,10 +1,9 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version-ago/starsExtra)](https://cran.r-project.org/package=starsExtra)
-[![CRAN\_Downloads\_Badge](http://cranlogs.r-pkg.org/badges/last-month/starsExtra)](https://cran.r-project.org/package=starsExtra)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-ago/starsExtra)](https://cran.r-project.org/package=starsExtra)
+[![CRAN_Downloads_Badge](http://cranlogs.r-pkg.org/badges/last-month/starsExtra)](https://cran.r-project.org/package=starsExtra)
 
-starsExtra
-==========
+# starsExtra
 
 R package `starsExtra` provides several miscellaneous functions for
 working with `stars` objects, mainly single-band rasters. Currently
@@ -14,10 +13,9 @@ includes functions for:
 -   Detrending of Digital Elevation Models
 -   Calculating flow length
 -   Calculating the Convergence Index
--   Calculating topographic aspect
+-   Calculating topographic aspect and slope
 
-Installation
-------------
+## Installation
 
 CRAN version:
 
@@ -32,8 +30,7 @@ install.packages("remotes")
 remotes::install_github("michaeldorman/starsExtra")
 ```
 
-Usage
------
+## Usage
 
 Once installed, the library can be loaded as follows.
 
@@ -45,14 +42,12 @@ library(starsExtra)
 #> Loading required package: abind
 ```
 
-Documentation
--------------
+## Documentation
 
 The complete documentation can be found at
 <https://michaeldorman.github.io/starsExtra/>.
 
-Example
--------
+## Example
 
 The following code applied a 15\*15 mean focal filter on a 533\*627
 `stars` Digital Elevation Model (DEM):
@@ -68,7 +63,7 @@ carmel_mean15 = focal2(
 )
 ```
 
-The calculation takes: 0.5631919 secs.
+The calculation takes: 0.3050735 secs.
 
 The original DEM and the filtered DEM can be combined and plotted with
 the following expressions:
@@ -81,8 +76,7 @@ plot(r, breaks = "equal", col = terrain.colors(10), key.pos = 4)
 
 ![](README-focal-example-1.png)
 
-Timing
-------
+## Timing
 
 The following code section compares the calculation time of `focal2` in
 the above example with `raster::focal` (both using C/C++) and the
@@ -106,9 +100,9 @@ res = microbenchmark(
 res
 #> Unit: milliseconds
 #>     expr        min         lq       mean     median         uq        max
-#>   focal2   490.8400   497.2334   507.1330   500.9711   505.5926   543.1901
-#>    focal   115.7206   119.2707   153.4027   121.3225   124.4334   413.7475
-#>  focal2r 14946.2629 15031.5734 15172.0134 15111.5967 15311.7349 15582.1324
+#>   focal2   262.4002   262.7809   279.7792   269.7921   276.1204   374.7612
+#>    focal   110.1638   110.3018   140.8258   112.3260   114.7384   290.3110
+#>  focal2r 14411.5980 14436.0866 14496.4930 14489.4565 14542.2283 14628.9805
 #>  neval
 #>     10
 #>     10
