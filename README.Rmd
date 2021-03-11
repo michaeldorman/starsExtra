@@ -89,7 +89,7 @@ plot(r, breaks = "equal", col = terrain.colors(10), key.pos = 4)
 
 ## Timing
 
-The following code section compares the calculation time of `focal2` in the above example with `raster::focal` (both using C/C++) and the reference method `starsExtra:::focal2r` (using R code only).
+The following code section compares the calculation time of `focal2` in the above example with `raster::focal` (both using C/C++) and the reference method `focal2r` (using R code only).
 
 ```{r}
 library(microbenchmark)
@@ -102,7 +102,7 @@ carmelr = as(carmel, "Raster")
 res = microbenchmark(
   focal2 = focal2(carmel, w = matrix(1, 15, 15), fun = "mean", na.rm = FALSE), 
   focal = focal(carmelr, w = matrix(1, 15, 15), fun = mean, na.rm = FALSE),
-  focal2r = starsExtra:::focal2r(carmel, k = 15, mean),
+  focal2r = focal2r(carmel, w = matrix(1, 15, 15), mean),
   times = 10
 )
 res
