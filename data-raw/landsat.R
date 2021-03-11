@@ -32,6 +32,9 @@ crs = st_crs(r)
 crs$wkt = crs$wkt %>% gsub("°", "", .)
 st_crs(r) = crs
 
+# Normalize
+r = st_normalize(r)
+
 # Write
 landsat = r
 usethis::use_data(landsat, overwrite = TRUE)

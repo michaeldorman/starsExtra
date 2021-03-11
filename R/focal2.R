@@ -3,7 +3,7 @@
 #' Applies a focal filter with weighted neighborhood \code{w} on a raster. The weights (\code{w}) can be added to, subtracted from, multiplied by or divided with the raster values (as specified with \code{weight_fun}). The focal cell is then taken as the mean, sum, minimum or maximum of the weighted values (as specified with \code{fun}).  Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 #'
 #' @param x A raster (class \code{stars}) with one attribute and two dimensions: \code{x} and \code{y}, i.e., a single-band raster.
-#' @param w Weights matrix defining the neighborhood size around the focal cell, as well as the weights. For example, \code{matrix(1,3,3)} implies a neighborhood of size 3*3 with equal weights of 1 for all cells. The matrix must be square, with an odd number of rows and columns.
+#' @param w Weights matrix defining the neighborhood size around the focal cell, as well as the weights. For example, \code{matrix(1,3,3)} implies a neighborhood of size 3*3 with equal weights of 1 for all cells. The matrix must be square, i.e., with an odd number of rows and columns.
 #' @param fun A function to aggregate the resulting values for each neighborhood. Possible values are: \code{"mean"}, \code{"sum"}, \code{"min"}, \code{"max"}, and \code{"mode"}. The default is \code{"mean"}, i.e., the resulting values per neighborhood are \emph{averaged} before being assigned to the new focal cell value.
 #' @param weight_fun An operator which is applied on each pair of values comprising the cell value and the respective weight value, as in \code{raster_value-weight}. Possible values are: \code{"+"}, \code{"-"}, \code{"*"}, \code{"/"}. The default is \code{"*"}, i.e., each cell value is \emph{multiplied} by the respective weight.
 #' @param na.rm Should \code{NA} values in the neighborhood be removed from the calculation? Default is \code{FALSE}.
@@ -36,11 +36,12 @@
 focal2 = function(x, w, fun = "mean", weight_fun = "*", na.rm = FALSE, mask = FALSE, na_flag = -9999) {
 
   # Checks
+  if(inherits(x, "stars_proxy")) stop("'x' must be 'stars', not 'stars_proxy'")
   x = check_one_attribute(x)
   x = check_2d(x)
   stopifnot(is(w, "matrix"))
-  if(any(is.na(w))) { stop("weight matrix 'w' includes 'NA's") }
-  if(!nrow(w) == ncol(w)) { stop("weight matrix is not rectangular") }
+  if(any(is.na(w))) stop("weight matrix 'w' includes 'NA's")
+  if(!nrow(w) == ncol(w)) stop("weight matrix is not rectangular")
   stopifnot(is.character(fun))
   stopifnot(fun %in% c("mean", "sum", "min", "max", "mode"))
   stopifnot(weight_fun %in% c("+", "-", "*", "/"))

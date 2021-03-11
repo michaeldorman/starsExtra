@@ -33,13 +33,20 @@
 * Added 'pkgdown' site
 * Added 'progress' option to 'flowlength' and 'dist_to_nearest'
 
-## starsExtra 0.2.2
+## starsExtra 0.2.2 (2021-01-10)
 
 * Added 'mode_value' function
 * Added "mode" option in 'focal2'
 
+## starsExtra 0.2.4
+
+* Added 'footprints' function
+* Added 'rgb_to_grey' function
+* Added weights matrix 'w' (instead of 'k') argument in 'focal2r'
+
 ## To do
 
+* Histogram equalization ('imager')
 * Add five options for dealing with ties in 'focal2'/"mode" (first, last, min, max, random)
 * Function to convert factor 'stars' to numeric
 * Make consistent argument names 'x' and 'v' (raster and vector, respectively)

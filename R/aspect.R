@@ -44,6 +44,7 @@
 aspect = function(x, na_flag = -9999) {
 
   # Checks
+  if(inherits(x, "stars_proxy")) stop("'x' must be 'stars', not 'stars_proxy'")
   x = check_one_attribute(x)
   x = check_2d(x)
   stopifnot(is.numeric(na_flag))

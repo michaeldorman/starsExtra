@@ -17,7 +17,7 @@ focal2(
 \arguments{
 \item{x}{A raster (class \code{stars}) with one attribute and two dimensions: \code{x} and \code{y}, i.e., a single-band raster.}
 
-\item{w}{Weights matrix defining the neighborhood size around the focal cell, as well as the weights. For example, \code{matrix(1,3,3)} implies a neighborhood of size 3*3 with equal weights of 1 for all cells. The matrix must be square, with an odd number of rows and columns.}
+\item{w}{Weights matrix defining the neighborhood size around the focal cell, as well as the weights. For example, \code{matrix(1,3,3)} implies a neighborhood of size 3*3 with equal weights of 1 for all cells. The matrix must be square, i.e., with an odd number of rows and columns.}
 
 \item{fun}{A function to aggregate the resulting values for each neighborhood. Possible values are: \code{"mean"}, \code{"sum"}, \code{"min"}, \code{"max"}, and \code{"mode"}. The default is \code{"mean"}, i.e., the resulting values per neighborhood are \emph{averaged} before being assigned to the new focal cell value.}
 

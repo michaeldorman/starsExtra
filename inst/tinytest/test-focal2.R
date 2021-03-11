@@ -2,23 +2,23 @@ library(starsExtra)
 
 expect_equal({
   data(carmel)
-  carmel1 = focal2(carmel, matrix(1, 3, 3), "mean", na.rm = TRUE)
+  carmel1 = focal2(carmel, matrix(1,3,3), "mean", na.rm = TRUE)
   carmel1[[1]]
 },
 {
   data(carmel)
-  carmel2 = starsExtra:::focal2r(carmel, 3, mean, na.rm = TRUE)
+  carmel2 = focal2r(carmel, matrix(1,3,3), mean, na.rm = TRUE)
   carmel2[[1]]
 })
 
 expect_equal({
   data(carmel)
-  carmel1 = focal2(carmel, matrix(1, 5, 5), "sum", na.rm = FALSE)
+  carmel1 = focal2(carmel, matrix(1,5,5), "sum", na.rm = FALSE)
   carmel1[[1]]
 },
 {
   data(carmel)
-  carmel2 = starsExtra:::focal2r(carmel, 5, sum, na.rm = FALSE)
+  carmel2 = focal2r(carmel, matrix(1,5,5), sum, na.rm = FALSE)
   carmel2[[1]]
 })
 

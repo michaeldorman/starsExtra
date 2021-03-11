@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">starsExtra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -158,7 +158,7 @@
 <span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
   focal2 <span class="op">=</span> <span class="fu"><a href="reference/focal2.html">focal2</a></span><span class="op">(</span><span class="va">carmel</span>, w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span>, <span class="fl">15</span><span class="op">)</span>, fun <span class="op">=</span> <span class="st">"mean"</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, 
   focal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/focal.html">focal</a></span><span class="op">(</span><span class="va">carmelr</span>, w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span>, <span class="fl">15</span><span class="op">)</span>, fun <span class="op">=</span> <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
-  focal2r <span class="op">=</span> <span class="fu">starsExtra</span><span class="fu">:::</span><span class="fu">focal2r</span><span class="op">(</span><span class="va">carmel</span>, k <span class="op">=</span> <span class="fl">15</span>, <span class="va">mean</span><span class="op">)</span>,
+  focal2r <span class="op">=</span> <span class="fu">starsExtra</span><span class="fu">:::</span><span class="fu"><a href="reference/focal2r.html">focal2r</a></span><span class="op">(</span><span class="va">carmel</span>, k <span class="op">=</span> <span class="fl">15</span>, <span class="va">mean</span><span class="op">)</span>,
   times <span class="op">=</span> <span class="fl">10</span>
 <span class="op">)</span>
 <span class="va">res</span>

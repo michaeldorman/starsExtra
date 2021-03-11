@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RGB image of Mount Carmel — landsat • starsExtra</title>
+<title>Convert RGB to greyscale — rgb_to_greyscale • starsExtra</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="RGB image of Mount Carmel — landsat" />
-<meta property="og:description" content="A stars object representing an RGB image of part of Mount Carmel, at 30m resolution. The data source is Landsat-8 Surface Reflectance product." />
+<meta property="og:title" content="Convert RGB to greyscale — rgb_to_greyscale" />
+<meta property="og:description" content="Convert a 3-band RGB raster to 1-band greyscale raster. Based on wvtool::rgb2gray." />
 
 
 
@@ -123,29 +123,45 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>RGB image of Mount Carmel</h1>
-    <small class="dont-index">Source: <a href='https://github.com/michaeldorman/starsExtra/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>landsat.Rd</code></div>
+    <h1>Convert RGB to greyscale</h1>
+    <small class="dont-index">Source: <a href='https://github.com/michaeldorman/starsExtra/blob/master/R/rgb_to_greyscale.R'><code>R/rgb_to_greyscale.R</code></a></small>
+    <div class="hidden name"><code>rgb_to_greyscale.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A <code>stars</code> object representing an RGB image of part of Mount Carmel, at 30m resolution. The data source is Landsat-8 Surface Reflectance product.</p>
+    <p>Convert a 3-band RGB raster to 1-band greyscale raster. Based on <code>wvtool::rgb2gray</code>.</p>
     </div>
 
-    <pre class="usage"><span class='va'>landsat</span></pre>
+    <pre class="usage"><span class='fu'>rgb_to_greyscale</span><span class='op'>(</span><span class='va'>x</span>, rgb <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, coefs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.3</span>, <span class='fl'>0.59</span>, <span class='fl'>0.11</span><span class='op'>)</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A three-dimensional <code>stars</code> object with RGB values</p></td>
+    </tr>
+    <tr>
+      <th>rgb</th>
+      <td><p>Indices of RGB bands, default is <code><a href='https://rdrr.io/r/base/c.html'>c(1, 2, 3)</a></code></p></td>
+    </tr>
+    <tr>
+      <th>coefs</th>
+      <td><p>RGB weights, default is <code><a href='https://rdrr.io/r/base/c.html'>c(0.30,0.59,0.11)</a></code></p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>stars</code> object with 1 attribute:</p><dl>
-  <dt>refl</dt><dd><p>Reflectance, numeric value between 0 and 1</p></dd>
-
-</dl>
-
+    <p>A two-dimensional <code>stars</code> object greyscale values</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/raster/man/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>landsat</span>, breaks <span class='op'>=</span> <span class='st'>"equal"</span><span class='op'>)</span>
-</div><div class='img'><img src='landsat-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>landsat</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/raster/man/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>landsat</span>, rgb <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in image.stars(x, ..., axes = axes, breaks = breaks, col = col,     key.pos = key.pos, key.width = key.width, key.length = key.length,     main = NULL): rgb plotting not supported on this device</span></div><div class='input'><span class='va'>landsat_grey</span> <span class='op'>=</span> <span class='fu'>rgb_to_greyscale</span><span class='op'>(</span><span class='va'>landsat</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/raster/man/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>landsat_grey</span>, breaks <span class='op'>=</span> <span class='st'>"equal"</span><span class='op'>)</span>
+</div><div class='img'><img src='rgb_to_greyscale-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
