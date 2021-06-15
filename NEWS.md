@@ -38,14 +38,21 @@
 * Added 'mode_value' function
 * Added "mode" option in 'focal2'
 
-## starsExtra 0.2.4
+## starsExtra 0.2.4 (2021-03-16)
 
 * Added 'footprints' function
 * Added 'rgb_to_grey' function
 * Added weights matrix 'w' (instead of 'k') argument in 'focal2r'
 
+## starsExtra 0.2.5
+
+* Fixed reversed 'nrow'/'ncol' in 'matrix_to_stars'
+
 ## To do
 
+* Allow 'NA' in focal weight matrix
+* Circular mean (function(x) (circ.mean((as.numeric(x) * pi) / (180)) * 180) / pi)
+* Classify aspect to N/E/W/S
 * Histogram equalization ('imager')
 * Add five options for dealing with ties in 'focal2'/"mode" (first, last, min, max, random)
 * Function to convert factor 'stars' to numeric

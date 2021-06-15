@@ -19,7 +19,7 @@ matrix_to_stars = function(m, res = 1) {
   r = st_as_stars(t(m))
   r = st_set_dimensions(r, names = c("x", "y"))
   r = st_set_dimensions(r, "x", offset = 0, delta = res)
-  r = st_set_dimensions(r, "y", offset = ncol(m)*res, delta = -res)
+  r = st_set_dimensions(r, "y", offset = nrow(m)*res, delta = -res)
 
   # Return
   return(r)
