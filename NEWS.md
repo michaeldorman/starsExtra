@@ -44,9 +44,13 @@
 * Added 'rgb_to_grey' function
 * Added weights matrix 'w' (instead of 'k') argument in 'focal2r'
 
-## starsExtra 0.2.5
+## starsExtra 0.2.5 (2021-06-15)
 
 * Fixed reversed 'nrow'/'ncol' in 'matrix_to_stars'
+
+## starsExtra 0.2.6
+
+* Added checks to quit from 'slope'/'aspect' if raster is in lon/lat or if raster is curvilinear
 
 ## To do
 

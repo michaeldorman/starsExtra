@@ -19,6 +19,8 @@ Calculates topographic aspect given a Digital Elevation Model (DEM) raster. Inpu
 }
 \note{
 Aspect calculation results in \code{NA} when at least one of the cell neighbors is \code{NA}, including the outermost rows and columns. Given that the focal window size in aspect calculation is 3*3, this means that the outermost one row and one column are given an aspect value of \code{NA}.
+
+The raster must be in projected CRS, and units of x/y resolution are assumed to be the same as units of elevation (typically \emph{meters}).
 }
 \examples{
 # Small example

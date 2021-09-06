@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">starsExtra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -110,11 +110,7 @@
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>Once installed, the library can be loaded as follows.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://michaeldorman.github.io/starsExtra/">starsExtra</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: sf</span>
-<span class="co">#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</span>
-<span class="co">#&gt; Loading required package: stars</span>
-<span class="co">#&gt; Loading required package: abind</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://michaeldorman.github.io/starsExtra/">starsExtra</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
@@ -134,7 +130,7 @@
   na.rm <span class="op">=</span> <span class="cn">TRUE</span>,           <span class="co"># 'NA' in neighborhood are removed</span>
   mask <span class="op">=</span> <span class="cn">TRUE</span>             <span class="co"># Areas that were 'NA' in 'x' are masked from result</span>
 <span class="op">)</span></code></pre></div>
-<p>The calculation takes: 0.3050735 secs.</p>
+<p>The calculation takes: 0.5625446 secs.</p>
 <p>The original DEM and the filtered DEM can be combined and plotted with the following expressions:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">r</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">carmel</span>, <span class="va">carmel_mean15</span>, along <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
@@ -145,32 +141,27 @@
 <div id="timing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#timing" class="anchor"></a>Timing</h2>
-<p>The following code section compares the calculation time of <code>focal2</code> in the above example with <code><a href="https://rdrr.io/pkg/raster/man/focal.html">raster::focal</a></code> (both using C/C++) and the reference method <code>starsExtra:::focal2r</code> (using R code only).</p>
+<p>The following code section compares the calculation time of <code>focal2</code> in the above example with <code><a href="https://rdrr.io/pkg/raster/man/focal.html">raster::focal</a></code> (both using C/C++) and the reference method <code>focal2r</code> (using R code only).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/">microbenchmark</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">microbenchmark</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://michaeldorman.github.io/starsExtra/">starsExtra</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster">raster</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: sp</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">carmel</span><span class="op">)</span>
 <span class="va">carmelr</span> <span class="op">=</span> <span class="fu">as</span><span class="op">(</span><span class="va">carmel</span>, <span class="st">"Raster"</span><span class="op">)</span>
 
-<span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
+<span class="va">res</span> <span class="op">=</span> <span class="fu">microbenchmark</span><span class="op">(</span>
   focal2 <span class="op">=</span> <span class="fu"><a href="reference/focal2.html">focal2</a></span><span class="op">(</span><span class="va">carmel</span>, w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span>, <span class="fl">15</span><span class="op">)</span>, fun <span class="op">=</span> <span class="st">"mean"</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, 
   focal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/focal.html">focal</a></span><span class="op">(</span><span class="va">carmelr</span>, w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span>, <span class="fl">15</span><span class="op">)</span>, fun <span class="op">=</span> <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
-  focal2r <span class="op">=</span> <span class="fu">starsExtra</span><span class="fu">:::</span><span class="fu"><a href="reference/focal2r.html">focal2r</a></span><span class="op">(</span><span class="va">carmel</span>, k <span class="op">=</span> <span class="fl">15</span>, <span class="va">mean</span><span class="op">)</span>,
+  focal2r <span class="op">=</span> <span class="fu"><a href="reference/focal2r.html">focal2r</a></span><span class="op">(</span><span class="va">carmel</span>, w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span>, <span class="fl">15</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span>,
   times <span class="op">=</span> <span class="fl">10</span>
 <span class="op">)</span>
 <span class="va">res</span>
 <span class="co">#&gt; Unit: milliseconds</span>
-<span class="co">#&gt;     expr        min         lq       mean     median         uq        max</span>
-<span class="co">#&gt;   focal2   262.4002   262.7809   279.7792   269.7921   276.1204   374.7612</span>
-<span class="co">#&gt;    focal   110.1638   110.3018   140.8258   112.3260   114.7384   290.3110</span>
-<span class="co">#&gt;  focal2r 14411.5980 14436.0866 14496.4930 14489.4565 14542.2283 14628.9805</span>
-<span class="co">#&gt;  neval</span>
-<span class="co">#&gt;     10</span>
-<span class="co">#&gt;     10</span>
-<span class="co">#&gt;     10</span></code></pre></div>
+<span class="co">#&gt;     expr        min         lq       mean     median         uq        max neval</span>
+<span class="co">#&gt;   focal2   542.3506   546.0164   587.9224   554.3557   609.8761   793.5663    10</span>
+<span class="co">#&gt;    focal   114.3561   115.9764   142.2213   119.7932   125.9327   339.7064    10</span>
+<span class="co">#&gt;  focal2r 17236.5407 17367.5100 17734.2765 17634.1378 17902.5663 19048.0060    10</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/raster/man/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></code></pre></div>
 <p><img src="README-focal-timing-1.png"></p>

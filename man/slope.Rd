@@ -18,7 +18,9 @@ A \code{stars} raster with topographic slope, i.e., the azimuth where the terrai
 Calculates topographic slope given a Digital Elevation Model (DEM) raster. Input and output are rasters of class \code{stars}, single-band (i.e., only `"x"` and `"y"` dimensions), with one attribute.
 }
 \note{
-Slope calculation results in \code{NA} when at least one of the cell neighbors is \code{NA}, including the outermost rows and columns. Given that the focal window size in slope calculation is 3*3, this means that the outermost one row and one column are given an slope value of \code{NA}.
+Slope calculation results in \code{NA} when at least one of the cell neighbors is \code{NA}, including the outermost rows and columns. Given that the focal window size in slope calculation is 3*3, this means that the outermost one row and one column are given an slope value of \code{NA}. 
+
+The raster must be in projected CRS, and units of x/y resolution are assumed to be the same as units of elevation (typically \emph{meters}).
 }
 \examples{
 # Small example

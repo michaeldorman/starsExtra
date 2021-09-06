@@ -7,6 +7,8 @@
 #' @return A \code{stars} raster with topographic slope, i.e., the azimuth where the terrain is tilted towards, in decimal degrees (0-360) clockwise from north. Aspect of flat terrain, i.e., where all values in the neighborhood are equal, is set to \code{-1}. Returned raster values are of class \code{units} (decimal degrees).
 #'
 #' @note Aspect calculation results in \code{NA} when at least one of the cell neighbors is \code{NA}, including the outermost rows and columns. Given that the focal window size in aspect calculation is 3*3, this means that the outermost one row and one column are given an aspect value of \code{NA}.
+#' 
+#' The raster must be in projected CRS, and units of x/y resolution are assumed to be the same as units of elevation (typically \emph{meters}).
 #'
 #' @references The topographic aspect algorithm is based on the \emph{How aspect works} article in the ArcGIS documentation:
 #'
@@ -45,6 +47,8 @@ aspect = function(x, na_flag = -9999) {
 
   # Checks
   if(inherits(x, "stars_proxy")) stop("'x' must be 'stars', not 'stars_proxy'")
+  if(attr(st_dimensions(x), "raster")$curvilinear) stop("Curvilinear rasters are not supported.")
+  if(st_is_longlat(x)) stop("Rasters in geographical CRS are not supported.")
   x = check_one_attribute(x)
   x = check_2d(x)
   stopifnot(is.numeric(na_flag))
