@@ -48,9 +48,13 @@
 
 * Fixed reversed 'nrow'/'ncol' in 'matrix_to_stars'
 
-## starsExtra 0.2.6
+## starsExtra 0.2.6 (2021-09-06)
 
 * Added checks to quit from 'slope'/'aspect' if raster is in lon/lat or if raster is curvilinear
+
+## starsExtra 0.2.7
+
+* Enabled raster with missing CRS in functions 'asect', 'slope', and 'CI'
 
 ## To do
 
@@ -63,3 +67,4 @@
 * Make consistent argument names 'x' and 'v' (raster and vector, respectively)
 * Parallel processing in 'CI' function
 * Improve 'extract2' function (exactextractr?)
+
