@@ -56,7 +56,7 @@
 
 * Enabled raster with missing CRS in functions 'asect', 'slope', and 'CI'
 
-## starsExtra 0.2.8
+## starsExtra 0.2.8 (2024-01-13)
 
 * Removed 'plot' from 'footprints' example to avoid error
 
