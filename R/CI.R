@@ -49,8 +49,8 @@ CI = function(x, k, na.rm = FALSE, na_flag = -9999) {
   stopifnot(is.numeric(na_flag))
   stopifnot(length(na_flag) == 1)
 
-  # Set units to 'NA'
-  if(class(x[[1]]) == "units") x[[1]] = units::drop_units(x[[1]])
+  # Drop units if any
+  if(inherits(x[[1]], "units")) x[[1]] = units::drop_units(x[[1]])
 
   # Check range 0-360
   if(any(!is.na(x[[1]]) & ((x[[1]] < 0 & x[[1]] != -1) | x[[1]] > 360))) stop("Raster values must be in [0-360]")

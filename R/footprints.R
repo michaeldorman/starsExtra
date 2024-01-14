@@ -24,9 +24,6 @@
 #' pol = footprints(files)
 #' pol
 #' 
-#' # Plot
-#' plot(pol)
-#' 
 #' @export
 
 footprints = function(x) {

@@ -52,19 +52,11 @@
 
 * Added checks to quit from 'slope'/'aspect' if raster is in lon/lat or if raster is curvilinear
 
-## starsExtra 0.2.7
+## starsExtra 0.2.7 (2021-11-18)
 
 * Enabled raster with missing CRS in functions 'asect', 'slope', and 'CI'
 
-## To do
+## starsExtra 0.2.8
 
-* Allow 'NA' in focal weight matrix
-* Circular mean (function(x) (circ.mean((as.numeric(x) * pi) / (180)) * 180) / pi)
-* Classify aspect to N/E/W/S
-* Histogram equalization ('imager')
-* Add five options for dealing with ties in 'focal2'/"mode" (first, last, min, max, random)
-* Function to convert factor 'stars' to numeric
-* Make consistent argument names 'x' and 'v' (raster and vector, respectively)
-* Parallel processing in 'CI' function
-* Improve 'extract2' function (exactextractr?)
+* Removed 'plot' from 'footprints' example to avoid error
 

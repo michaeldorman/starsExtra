@@ -33,7 +33,4 @@ files = c(file1, file2, file3)
 pol = footprints(files)
 pol
 
-# Plot
-plot(pol)
-
 }

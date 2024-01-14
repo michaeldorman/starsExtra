@@ -17,7 +17,7 @@ Check, and possibly correct, that the input \code{stars} object:
 \itemize{
 \item{Has exactly one attribute.}
 \item{Has exactly three dimensions.}
-\item{The first two dimensions are spatial, named \code{x} and {y} (in that order).}
+\item{The first two dimensions are spatial, named \code{x} and \code{y} (in that order).}
 }
 }
 \examples{
