@@ -20,5 +20,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Michael Dorman \email{dorman@post.bgu.ac.il}
 
+Authors:
+\itemize{
+  \item Michael Dorman \email{dorman@post.bgu.ac.il}
+}
+
 }
 \keyword{internal}

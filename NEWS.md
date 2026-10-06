@@ -60,3 +60,7 @@
 
 * Removed 'plot' from 'footprints' example to avoid error
 
+## starsExtra 0.2.8 (2026-10-06)
+
+* Modified tests to avoid error
+* Added 'rhub' workflow to test on r-devel linux

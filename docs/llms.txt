@@ -1,0 +1,181 @@
+# starsExtra
+
+R package `starsExtra` provides several miscellaneous functions for
+working with `stars` objects, mainly single-band rasters. Currently
+includes functions for:
+
+- Focal filtering
+- Detrending of Digital Elevation Models
+- Calculating flow length
+- Calculating the Convergence Index
+- Calculating topographic aspect and slope
+
+## Installation
+
+CRAN version:
+
+``` r
+install.packages("starsExtra")
+```
+
+GitHub version:
+
+``` r
+install.packages("remotes")
+remotes::install_github("michaeldorman/starsExtra")
+```
+
+## Usage
+
+Once installed, the library can be loaded as follows.
+
+``` r
+library(starsExtra)
+```
+
+## Documentation
+
+The complete documentation can be found at
+<https://michaeldorman.github.io/starsExtra/>.
+
+## Example
+
+The following code applied a 15\*15 mean focal filter on a 533\*627
+`stars` Digital Elevation Model (DEM):
+
+``` r
+data(carmel)
+carmel_mean15 = focal2(
+  x = carmel,             # Input 'stars' raster
+  w = matrix(1, 15, 15),  # Weights
+  fun = "mean",           # Aggregation function
+  na.rm = TRUE,           # 'NA' in neighborhood are removed
+  mask = TRUE             # Areas that were 'NA' in 'x' are masked from result
+)
+```
+
+The calculation takes: 0.5625446 secs.
+
+The original DEM and the filtered DEM can be combined and plotted with
+the following expressions:
+
+``` r
+r = c(carmel, carmel_mean15, along = 3)
+r = st_set_dimensions(r, 3, values = c("input", "15*15 mean filter"))
+plot(r, breaks = "equal", col = terrain.colors(10), key.pos = 4)
+```
+
+![](README-focal-example-1.png)
+
+## Timing
+
+The following code section compares the calculation time of `focal2` in
+the above example with
+[`raster::focal`](https://rspatial.github.io/terra/reference/focal.html)
+(both using C/C++) and the reference method `focal2r` (using R code
+only).
+
+``` r
+library(microbenchmark)
+library(starsExtra)
+library(raster)
+
+data(carmel)
+carmelr = as(carmel, "Raster")
+
+res = microbenchmark(
+  focal2 = focal2(carmel, w = matrix(1, 15, 15), fun = "mean", na.rm = FALSE), 
+  focal = focal(carmelr, w = matrix(1, 15, 15), fun = mean, na.rm = FALSE),
+  focal2r = focal2r(carmel, w = matrix(1, 15, 15), mean),
+  times = 10
+)
+res
+#> Unit: milliseconds
+#>     expr        min         lq       mean     median         uq        max neval
+#>   focal2   542.3506   546.0164   587.9224   554.3557   609.8761   793.5663    10
+#>    focal   114.3561   115.9764   142.2213   119.7932   125.9327   339.7064    10
+#>  focal2r 17236.5407 17367.5100 17734.2765 17634.1378 17902.5663 19048.0060    10
+```
+
+``` r
+boxplot(res)
+```
+
+![](README-focal-timing-1.png)
+
+# Package index
+
+## All functions
+
+- [`CI()`](CI.md) : Calculate the Convergence Index (CI) from a slope
+  raster
+
+- [`aspect()`](aspect.md) : Calculate topographic aspect from a DEM
+
+- [`carmel`](carmel.md) : Digital Elevation Model of Mount Carmel
+
+- [`dem`](dem.md) : Small Digital Elevation Model
+
+- [`detrend()`](detrend.md) : Detrend a Digital Elevation Model
+
+- [`dist_to_nearest()`](dist_to_nearest.md) : Calculate raster of
+  distances to nearest feature
+
+- [`extract2()`](extract2.md) : Extract raster values by lines or
+  polygons
+
+- [`flowlength()`](flowlength.md) : Calculate flow length
+
+- [`focal2()`](focal2.md) : Apply a focal filter on a raster
+
+- [`focal2r()`](focal2r.md) : Apply a focal filter on a raster (R)
+
+- [`footprints()`](footprints.md) : Footprints
+
+- [`golan`](golan.md) : Digital Elevation Model of Golan Heights
+
+- [`landsat`](landsat.md) : RGB image of Mount Carmel
+
+- [`layer_to_matrix()`](layer_to_matrix.md) :
+
+  Get `stars` layer values as matrix
+
+- [`layer_to_vector()`](layer_to_vector.md) :
+
+  Get `stars` layer values as vector
+
+- [`make_grid()`](make_grid.md) : Make 'stars' grid from 'sf' layer
+
+- [`matrix_extend()`](matrix_extend.md) : Extend matrix
+
+- [`matrix_get_neighbors()`](matrix_get_neighbors.md) : Get neighboring
+  cell values for given matrix cell
+
+- [`matrix_to_stars()`](matrix_to_stars.md) :
+
+  Convert `matrix` to `stars`
+
+- [`matrix_trim()`](matrix_trim.md) : Trim matrix
+
+- [`mode_value()`](mode_value.md) : Mode
+
+- [`normalize_2d()`](normalize_2d.md) : Normalize a 2D 'stars' object
+
+- [`normalize_3d()`](normalize_3d.md) : Normalize a 3D 'stars' object
+
+- [`rgb_to_greyscale()`](rgb_to_greyscale.md) : Convert RGB to greyscale
+
+- [`slope()`](slope.md) : Calculate topographic slope from a DEM
+
+- [`trim2()`](trim2.md) : Remove empty outer rows and columns
+
+- [`w_azimuth()`](w_azimuth.md) : Create matrix with azimuths to center
+
+- [`w_circle()`](w_circle.md) : Create matrix with circular weight
+  pattern
+
+# Articles
+
+### All vignettes
+
+- [Introduction](intro.md):
