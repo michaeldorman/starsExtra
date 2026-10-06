@@ -83,3 +83,9 @@ CRAN release: 2021-11-18
 CRAN release: 2024-01-13
 
 - Removed ‘plot’ from ‘footprints’ example to avoid error
+
+## starsExtra 0.2.8 (2026-10-06)
+
+CRAN release: 2024-01-13
+
+- Fixed error due to ‘dimnames’ in r-devel

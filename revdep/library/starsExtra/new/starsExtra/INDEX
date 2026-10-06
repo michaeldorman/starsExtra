@@ -1,0 +1,31 @@
+CI                      Calculate the Convergence Index (CI) from a
+                        slope raster
+aspect                  Calculate topographic aspect from a DEM
+carmel                  Digital Elevation Model of Mount Carmel
+dem                     Small Digital Elevation Model
+detrend                 Detrend a Digital Elevation Model
+dist_to_nearest         Calculate raster of distances to nearest
+                        feature
+extract2                Extract raster values by lines or polygons
+flowlength              Calculate flow length
+focal2                  Apply a focal filter on a raster
+focal2r                 Apply a focal filter on a raster (R)
+footprints              Footprints
+golan                   Digital Elevation Model of Golan Heights
+landsat                 RGB image of Mount Carmel
+layer_to_matrix         Get 'stars' layer values as matrix
+layer_to_vector         Get 'stars' layer values as vector
+make_grid               Make 'stars' grid from 'sf' layer
+matrix_extend           Extend matrix
+matrix_get_neighbors    Get neighboring cell values for given matrix
+                        cell
+matrix_to_stars         Convert 'matrix' to 'stars'
+matrix_trim             Trim matrix
+mode_value              Mode
+normalize_2d            Normalize a 2D 'stars' object
+normalize_3d            Normalize a 3D 'stars' object
+rgb_to_greyscale        Convert RGB to greyscale
+slope                   Calculate topographic slope from a DEM
+trim2                   Remove empty outer rows and columns
+w_azimuth               Create matrix with azimuths to center
+w_circle                Create matrix with circular weight pattern

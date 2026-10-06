@@ -1,0 +1,2 @@
+CC=gcc
+CFLAGS=-g -O2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/r-base-gvLXiX/r-base-4.5.2=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -fdebug-prefix-map=/build/r-base-gvLXiX/r-base-4.5.2=/usr/src/r-base-4.5.2-1ubuntu2 -Wdate-time -D_FORTIFY_SOURCE=3

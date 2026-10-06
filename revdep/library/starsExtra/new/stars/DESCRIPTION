@@ -1,0 +1,69 @@
+Package: stars
+Title: Spatiotemporal Arrays, Raster and Vector Data Cubes
+Version: 0.7-3
+Authors@R: 
+    c(person(given = "Edzer",
+             family = "Pebesma",
+             role = c("aut", "cre"),
+             email = "edzer.pebesma@uni-muenster.de",
+             comment = c(ORCID = "0000-0001-8049-7069")),
+      person(given = "Michael",
+             family = "Sumner",
+             role = "ctb", 
+             comment=c(ORCID = "0000-0002-2471-7511")),
+      person(given = "Etienne",
+             family = "Racine",
+             role = "ctb"),
+      person(given = "Adriano",
+             family = "Fantini",
+             role = "ctb"), 
+      person(given = "David", 
+             family = "Blodgett", 
+             role = "ctb"), 
+      person(given = "Krzysztof", 
+             family = "Dyba", 
+             role = "ctb",
+             comment=c(ORCID = "0000-0002-8614-3816")))
+Description: Reading, manipulating, writing and plotting
+    spatiotemporal arrays (raster and vector data cubes) in 'R', using 'GDAL'
+    bindings provided by 'sf', and 'NetCDF' bindings by 'ncmeta' and 'RNetCDF'.
+License: Apache License
+URL: https://r-spatial.github.io/stars/,
+        https://github.com/r-spatial/stars/
+BugReports: https://github.com/r-spatial/stars/issues/
+Additional_repositories: https://cran.uni-muenster.de/pebesma/
+LazyData: true
+Depends: R (>= 4.1.0), abind, sf (>= 1.0-19)
+Imports: methods, parallel, rlang, units
+Suggests: Cairo, CFtime (>= 1.7.1), classInt (>= 0.4-1), clue, covr,
+        cubble (>= 0.3.0), cubelyr, digest, dplyr (>= 0.7-0),
+        exactextractr, FNN, future.apply, ggforce, ggplot2, ggthemes,
+        gstat, httr, jsonlite, knitr, lwgeom, maps, mapdata, ncdfCF,
+        ncdfgeom, ncmeta (>= 0.0.3), OpenStreetMap, pbapply, plm,
+        randomForest, raster, rmarkdown, RNetCDF (>= 1.8-2), sp,
+        spacetime, spatstat (>= 2.0-1), spatstat.geom, starsdata, terra
+        (>= 1.4-22), testthat, tibble, tidyr, tsibble, viridis, xts,
+        zoo
+VignetteBuilder: knitr
+Encoding: UTF-8
+Collate: 'aggregate.R' 'cf.R' 'cubble.R' 'datasets.R' 'dimensions.R'
+        'extract.R' 'factors.R' 'geom.R' 'gt.R' 'init.R' 'intervals.R'
+        'mdim.R' 'mosaic.R' 'ncdf.R' 'ncproxy.R' 'OpenStreetMap.R'
+        'ops.R' 'plot.R' 'prcomp.R' 'proxy.R' 'rasterize.R' 'raster.R'
+        'read.R' 'rotate.R' 'sample.R' 'sf.R' 'spacetime.R'
+        'spatstat.R' 'sp.R' 'stars.R' 'subset.R' 'tidyverse.R' 'tile.R'
+        'transform.R' 'values.R' 'warp.R' 'write.R' 'xts.R'
+Config/roxygen2/version: 8.0.0
+NeedsCompilation: no
+Packaged: 2026-07-20 14:44:20 UTC; edzer
+Author: Edzer Pebesma [aut, cre] (ORCID:
+    <https://orcid.org/0000-0001-8049-7069>),
+  Michael Sumner [ctb] (ORCID: <https://orcid.org/0000-0002-2471-7511>),
+  Etienne Racine [ctb],
+  Adriano Fantini [ctb],
+  David Blodgett [ctb],
+  Krzysztof Dyba [ctb] (ORCID: <https://orcid.org/0000-0002-8614-3816>)
+Maintainer: Edzer Pebesma <edzer.pebesma@uni-muenster.de>
+Repository: CRAN
+Date/Publication: 2026-07-20 21:00:02 UTC
+Built: R 4.5.2; ; 2026-10-06 12:35:20 UTC; unix

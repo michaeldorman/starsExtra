@@ -1,0 +1,24 @@
+Package: starsExtra
+Title: Miscellaneous Functions for Working with 'stars' Rasters
+Version: 0.2.8
+Authors@R: 
+    person("Michael", "Dorman", email = "dorman@post.bgu.ac.il", role = c("aut", "cre"))
+Description: Miscellaneous functions for working with 'stars' objects, mainly single-band rasters. Currently includes functions for: (1) focal filtering, (2) detrending of Digital Elevation Models, (3) calculating flow length, (4) calculating the Convergence Index, (5) calculating topographic aspect and topographic slope.
+Depends: R (>= 3.5.0), sf, stars
+Imports: methods, parallel, mgcv, nngeo, units
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
+Suggests: tinytest, knitr, rmarkdown, raster
+VignetteBuilder: knitr
+URL: https://michaeldorman.github.io/starsExtra/,
+        https://github.com/michaeldorman/starsExtra/
+BugReports: https://github.com/michaeldorman/starsExtra/issues/
+NeedsCompilation: yes
+Packaged: 2024-01-13 14:13:32 UTC; michael
+Author: Michael Dorman [aut, cre]
+Maintainer: Michael Dorman <dorman@post.bgu.ac.il>
+Repository: CRAN
+Date/Publication: 2024-01-13 22:50:02 UTC
+Built: R 4.5.2; x86_64-pc-linux-gnu; 2026-10-06 12:27:02 UTC; unix

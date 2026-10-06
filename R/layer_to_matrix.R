@@ -24,6 +24,9 @@ layer_to_matrix = function(x, check = TRUE) {
   # To matrix
   m = t(x[[1]])
 
+  # Remove 'dim' names
+  attributes(m)$dim = unname(attributes(m)$dim)
+
   # Return
   return(m)
 
